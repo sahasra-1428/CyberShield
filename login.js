@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Save JWT token
 
                     localStorage.setItem(
-                        "cybershieldToken",
+                        "token",
                         data.token
                     );
 
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Save user information
 
                     localStorage.setItem(
-                        "cybershieldUser",
+                        "user",
                         JSON.stringify(data.user)
                     );
 
