@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CSP | Threat Scanner</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body class="scanner-page">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="nav-left">
+
+            <a href="index.html"
+               class="auth-logo">
+
+                <span>🛡️</span>
+
+                <div>
+
+                    <strong>CSP</strong>
+
+                    <small>
+                        Cyber Scam Protection
+                    </small>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#detector">
+                Detector
+            </a>
+
+            <a href="awareness.html">
+                Awareness
+            </a>
+
+            <a href="report.html">
+                Report
+            </a>
+
+        </nav>
+
+
+        <a href="user-dashboard.html"
+           class="scan-button">
+
+            Dashboard
+
+        </a>
+
+    </header>
+
+
+
+    <!-- ================= SCANNER HERO ================= -->
+
+    <main class="scanner-main">
+
+
+        <div class="scanner-heading">
+
+            <span>
+                CSP SECURITY ENGINE
+            </span>
+
+            <h1>
+                Scan before
+                <strong>you trust.</strong>
+            </h1>
+
+            <p>
+                Check suspicious URLs and messages for
+                common phishing, scam and security
+                indicators before interacting with them.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= SCANNER CARD ================= -->
+
+        <section class="main-scanner-card">
+
+
+            <!-- TABS -->
+
+            <div class="scanner-tabs">
+
+                <button
+                    class="scanner-tab active"
+                    onclick="switchScanner('url')">
+
+                    🔗
+
+                    <div>
+
+                        <strong>
+                            URL Scanner
+                        </strong>
+
+                        <small>
+                            Check suspicious links
+                        </small>
+
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="scanner-tab"
+                    onclick="switchScanner('message')">
+
+                    💬
+
+                    <div>
+
+                        <strong>
+                            Message Scanner
+                        </strong>
+
+                        <small>
+                            Analyze suspicious messages
+                        </small>
+
+                    </div>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= URL SCANNER ================= -->
+
+            <div id="urlScanPanel"
+                 class="scan-panel">
+
+                <label>
+                    Website URL
+                </label>
+
+                <div class="large-input">
+
+                    <span>
+                        🔗
+                    </span>
+
+                    <input
+                        type="url"
+                        id="urlInput"
+                        placeholder="https://example.com">
+
+                </div>
+
+
+                <p class="input-help">
+
+                    Enter the complete website address
+                    you want to check.
+
+                </p>
+
+
+                <button
+                    class="big-scan-button"
+                    onclick="performURLScan()">
+
+                    🔍 Analyze URL
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= MESSAGE SCANNER ================= -->
+
+            <div id="messageScanPanel"
+                 class="scan-panel"
+                 style="display:none;">
+
+                <label>
+                    Suspicious Message
+                </label>
+
+                <textarea
+                    id="messageInput"
+                    rows="7"
+                    placeholder="Paste the suspicious SMS, WhatsApp message, email or social media message here...">
+                </textarea>
+
+
+                <p class="input-help">
+
+                    Never share passwords, OTPs or banking
+                    information while checking a message.
+
+                </p>
+
+
+                <button
+                    class="big-scan-button"
+                    onclick="performMessageScan()">
+
+                    🔍 Analyze Message
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ================= SCANNING ================= -->
+
+            <div id="scanningBox"
+                 class="scanning-box"
+                 style="display:none;">
+
+                <div class="loading-shield">
+                    🛡️
+                </div>
+
+                <h3>
+                    Analyzing security indicators...
+                </h3>
+
+                <p>
+                    Please wait while CSP performs
+                    the security analysis.
+                </p>
+
+                <div class="progress-bar">
+
+                    <div></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= RESULT ================= -->
+
+            <div id="scanResult"
+                 class="scan-result"
+                 style="display:none;">
+
+
+                <div class="result-top">
+
+                    <div>
+
+                        <span>
+                            SCAN COMPLETE
+                        </span>
+
+                        <h2 id="scanStatus">
+                            No Major Threat Detected
+                        </h2>
+
+                    </div>
+
+
+                    <div id="resultBadge"
+                         class="result-badge">
+
+                        SAFE
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SCORE -->
+
+                <div class="scan-score-area">
+
+                    <div class="large-score">
+
+                        <strong id="scanScore">
+                            15
+                        </strong>
+
+                        <span>
+                            /100
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Risk Score
+                        </strong>
+
+                        <p id="scoreDescription">
+                            The submitted content shows
+                            relatively low-risk indicators.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHECKS -->
+
+                <div class="scan-check-grid">
+
+
+                    <div class="scan-check">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Phishing Analysis
+                            </strong>
+
+                            <p>
+                                No strong phishing pattern
+                                detected.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="scan-check">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Scam Indicators
+                            </strong>
+
+                            <p>
+                                Common scam signals checked.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="scan-check">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                URL Structure
+                            </strong>
+
+                            <p>
+                                Website structure analyzed.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="scan-check">
+
+                        <span>
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Security Signals
+                            </strong>
+
+                            <p>
+                                Suspicious indicators reviewed.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="scan-warning">
+
+                    🛡️
+
+                    <p>
+                        This scanner provides an initial
+                        security assessment. Always verify
+                        suspicious websites and messages
+                        independently.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="scan-again"
+                    onclick="resetScanner()">
+
+                    Scan Another
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= SECURITY TIPS ================= -->
+
+        <section class="scanner-tips">
+
+            <div>
+
+                <span>
+                    TIP 01
+                </span>
+
+                <h3>
+                    Never trust urgency.
+                </h3>
+
+                <p>
+                    Scammers often create pressure by
+                    claiming your account or money is
+                    at immediate risk.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    TIP 02
+                </span>
+
+                <h3>
+                    Check the sender.
+                </h3>
+
+                <p>
+                    Verify the sender's identity before
+                    clicking links or sharing information.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    TIP 03
+                </span>
+
+                <h3>
+                    Protect your OTP.
+                </h3>
+
+                <p>
+                    Never share OTPs, passwords or
+                    banking credentials with anyone.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function switchScanner(type) {
+
+            const urlPanel =
+                document.getElementById("urlScanPanel");
+
+            const messagePanel =
+                document.getElementById("messageScanPanel");
+
+            const tabs =
+                document.querySelectorAll(".scanner-tab");
+
+
+            tabs.forEach(tab => {
+
+                tab.classList.remove("active");
+
+            });
+
+
+            if (type === "url") {
+
+                urlPanel.style.display = "block";
+
+                messagePanel.style.display = "none";
+
+                tabs[0].classList.add("active");
+
+            }
+
+            else {
+
+                urlPanel.style.display = "none";
+
+                messagePanel.style.display = "block";
+
+                tabs[1].classList.add("active");
+
+            }
+
+        }
+
+
+
+        function performURLScan() {
+
+            const url =
+                document.getElementById("urlInput").value.trim();
+
+
+            if (!url) {
+
+                alert("Please enter a URL to scan.");
+
+                return;
+
+            }
+
+
+            startScan();
+
+        }
+
+
+
+        function performMessageScan() {
+
+            const message =
+                document.getElementById("messageInput").value.trim();
+
+
+            if (!message) {
+
+                alert("Please paste a message to scan.");
+
+                return;
+
+            }
+
+
+            startScan();
+
+        }
+
+
+
+        function startScan() {
+
+            document.getElementById("urlScanPanel")
+                .style.display = "none";
+
+            document.getElementById("messageScanPanel")
+                .style.display = "none";
+
+            document.getElementById("scanningBox")
+                .style.display = "block";
+
+
+            setTimeout(function() {
+
+                document.getElementById("scanningBox")
+                    .style.display = "none";
+
+                document.getElementById("scanResult")
+                    .style.display = "block";
+
+            }, 1800);
+
+        }
+
+
+
+        function resetScanner() {
+
+            document.getElementById("scanResult")
+                .style.display = "none";
+
+            document.getElementById("urlScanPanel")
+                .style.display = "block";
+
+            document.getElementById("urlInput")
+                .value = "";
+
+            document.getElementById("messageInput")
+                .value = "";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

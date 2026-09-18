@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Quick Scan | CSP</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🛡️
+            </div>
+
+            <div class="logo-text">
+                <strong>CSP</strong>
+                <span> · Cyber Scam Protection</span>
+            </div>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="detector.html">
+                Detector
+            </a>
+
+            <a href="awareness.html">
+                Awareness
+            </a>
+
+            <a href="report.html">
+                Report
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- QUICK SCAN -->
+
+    <main class="scan-page">
+
+        <div class="scan-header">
+
+            <span class="page-label">
+                QUICK SECURITY CHECK
+            </span>
+
+            <h1>
+                Scan Before You Click
+            </h1>
+
+            <p>
+                Check suspicious URLs and messages before
+                taking action.
+            </p>
+
+        </div>
+
+
+        <!-- SCAN OPTIONS -->
+
+        <div class="scan-options">
+
+            <button
+                class="scan-option active"
+                onclick="selectScan('url', this)">
+
+                <span>🔗</span>
+
+                <strong>
+                    Website
+                </strong>
+
+                <small>
+                    Check a URL
+                </small>
+
+            </button>
+
+
+            <button
+                class="scan-option"
+                onclick="selectScan('message', this)">
+
+                <span>💬</span>
+
+                <strong>
+                    Message
+                </strong>
+
+                <small>
+                    Check a message
+                </small>
+
+            </button>
+
+        </div>
+
+
+        <!-- INPUT -->
+
+        <div class="scan-input-box">
+
+            <label id="scanLabel">
+                Website URL
+            </label>
+
+            <input
+                id="scanInput"
+                type="url"
+                placeholder="https://example.com">
+
+            <button
+                class="primary-btn scan-main-button"
+                onclick="startScan()">
+
+                🔍 Start Scan
+
+            </button>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+            id="scanLoading"
+            class="scan-loading hidden">
+
+            <div class="loader"></div>
+
+            <h3>
+                Analyzing...
+            </h3>
+
+            <p>
+                Checking common warning indicators.
+            </p>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div
+            id="scanResult"
+            class="professional-result hidden">
+
+            <div class="score-circle">
+
+                <span id="riskScore">
+                    18
+                </span>
+
+                <small>
+                    /100
+                </small>
+
+            </div>
+
+
+            <div>
+
+                <span class="safe-label">
+                    SCAN COMPLETE
+                </span>
+
+                <h2 id="riskTitle">
+                    Low Risk
+                </h2>
+
+                <p id="riskDescription">
+                    No major warning indicators were detected.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scam Detector</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            color: #172554;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .safe {
+            background: #dcfce7;
+            border-left: 5px solid #16a34a;
+        }
+
+        .warning {
+            background: #fef3c7;
+            border-left: 5px solid #d97706;
+        }
+
+        .danger {
+            background: #fee2e2;
+            border-left: 5px solid #dc2626;
+        }
+
+        .result-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        li {
+            margin: 6px 0;
+        }
+
+        .score {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🔎 Scam Detector</h1>
+
+        <p class="subtitle">
+            Check a suspicious URL for common scam indicators
+        </p>
+
+        <label for="url">Enter Website URL</label>
+
+        <input
+            type="text"
+            id="url"
+            placeholder="Example: https://example.com"
+        >
+
+        <button onclick="checkURL()">
+            Check URL
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function checkURL() {
+
+    const input = document.getElementById("url");
+    const result = document.getElementById("result");
+
+    const url = input.value.trim();
+
+    if (url === "") {
+        alert("Please enter a URL.");
+        return;
+    }
+
+    let score = 0;
+    let warnings = [];
+
+    let lowerURL = url.toLowerCase();
+
+
+    // Check HTTPS
+    if (!lowerURL.startsWith("https://")) {
+
+        score += 20;
+
+        warnings.push(
+            "Website does not use HTTPS."
+        );
+    }
+
+
+    // Check suspicious words
+    const suspiciousWords = [
+        "login",
+        "verify",
+        "account",
+        "update",
+        "free",
+        "winner",
+        "prize",
+        "claim",
+        "urgent",
+        "password",
+        "bank",
+        "payment",
+        "security"
+    ];
+
+    suspiciousWords.forEach(function(word) {
+
+        if (lowerURL.includes(word)) {
+
+            score += 5;
+
+            warnings.push(
+                "Suspicious keyword detected: " + word
+            );
+        }
+
+    });
+
+
+    // Check @ symbol
+    if (url.includes("@")) {
+
+        score += 25;
+
+        warnings.push(
+            "URL contains @ symbol."
+        );
+    }
+
+
+    // Check excessive hyphens
+    const hyphens = (url.match(/-/g) || []).length;
+
+    if (hyphens >= 3) {
+
+        score += 15;
+
+        warnings.push(
+            "URL contains multiple hyphens."
+        );
+    }
+
+
+    // Check IP address
+    const ipPattern =
+        /https?:\/\/(\d{1,3}\.){3}\d{1,3}/;
+
+    if (ipPattern.test(url)) {
+
+        score += 25;
+
+        warnings.push(
+            "Website uses an IP address instead of a domain name."
+        );
+    }
+
+
+    // Check very long URL
+    if (url.length > 100) {
+
+        score += 15;
+
+        warnings.push(
+            "URL is unusually long."
+        );
+    }
+
+
+    // Limit score
+    if (score > 100) {
+        score = 100;
+    }
+
+
+    result.style.display = "block";
+
+
+    // SAFE
+    if (score < 30) {
+
+        result.className = "safe";
+
+        result.innerHTML = `
+            <div class="result-title">
+                🟢 Low Risk
+            </div>
+
+            <p>
+                No major suspicious indicators were detected.
+            </p>
+
+            <div class="score">
+                Risk Score: ${score}/100
+            </div>
+        `;
+    }
+
+
+    // WARNING
+    else if (score < 60) {
+
+        result.className = "warning";
+
+        result.innerHTML = `
+            <div class="result-title">
+                🟡 Suspicious URL
+            </div>
+
+            <p>
+                This URL contains some suspicious indicators.
+                Be careful before entering personal information.
+            </p>
+
+            <div class="score">
+                Risk Score: ${score}/100
+            </div>
+
+            <ul>
+                ${warnings.map(w => `<li>${w}</li>`).join("")}
+            </ul>
+        `;
+    }
+
+
+    // DANGEROUS
+    else {
+
+        result.className = "danger";
+
+        result.innerHTML = `
+            <div class="result-title">
+                🔴 High Risk URL
+            </div>
+
+            <p>
+                This URL has several characteristics commonly
+                associated with suspicious or potentially malicious websites.
+            </p>
+
+            <div class="score">
+                Risk Score: ${score}/100
+            </div>
+
+            <ul>
+                ${warnings.map(w => `<li>${w}</li>`).join("")}
+            </ul>
+
+            <br>
+
+            <strong>
+                ⚠️ Do not enter passwords, OTPs, bank details,
+                or other sensitive information.
+            </strong>
+        `;
+    }
+}
+
+</script>
+
+</body>
+</html>

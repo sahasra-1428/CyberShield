@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Checker | CyberShield</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- QR Scanner Library -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📷 QR Code Security Checker</h1>
+
+        <p>
+            Scan a QR code and check whether the decoded link looks suspicious.
+        </p>
+
+        <div id="reader"></div>
+
+        <div id="qrResult"></div>
+
+        <br>
+
+        <button onclick="startQRScanner()">
+            Start QR Scanner
+        </button>
+
+        <br><br>
+
+        <a href="user-dashboard.html">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+    <script src="extra-tools.js"></script>
+
+</body>
+</html>

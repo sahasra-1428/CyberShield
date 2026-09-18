@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CSP | User Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- LOGIN PROTECTION -->
+
+    <script>
+
+        const token =
+            localStorage.getItem("token");
+
+        if (!token) {
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+    </script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="dashboard-navbar">
+
+        <div class="dashboard-logo">
+
+            🛡️ <strong>CSP</strong>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="url-checker.html">
+                URL Checker
+            </a>
+
+            <a href="report.html">
+                Report
+            </a>
+
+            <a href="awareness.html">
+                Awareness
+            </a>
+
+            <a href="alerts.html">
+                Alerts
+            </a>
+
+            <button id="logoutBtn">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <main class="dashboard-container">
+
+
+        <!-- WELCOME -->
+
+        <section class="dashboard-welcome">
+
+            <p class="dashboard-label">
+                CYBER SECURITY PROTECTION
+            </p>
+
+            <h1>
+
+                Welcome,
+                <span id="userName">
+                    User
+                </span>
+                👋
+
+            </h1>
+
+            <p>
+                Protect yourself from phishing,
+                scams and other cyber threats.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             ACCOUNT INFORMATION
+        ========================== -->
+
+        <section class="dashboard-card">
+
+            <h2>
+                👤 Account Information
+            </h2>
+
+
+            <div class="user-info">
+
+                <p>
+
+                    <strong>
+                        Name:
+                    </strong>
+
+                    <span id="displayName">
+                        Loading...
+                    </span>
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Email:
+                    </strong>
+
+                    <span id="displayEmail">
+                        Loading...
+                    </span>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECURITY SCORE
+        ========================== -->
+
+        <section class="security-score-card">
+
+            <div class="score-icon">
+                🛡️
+            </div>
+
+
+            <div class="score-content">
+
+                <span class="score-label">
+                    YOUR SECURITY SCORE
+                </span>
+
+                <div class="score-number">
+
+                    82
+                    <span>/100</span>
+
+                </div>
+
+                <p>
+                    Good security habits detected.
+                    Complete the Cyber Safety Quiz
+                    to improve your security awareness.
+                </p>
+
+            </div>
+
+
+            <div class="score-status">
+
+                GOOD
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECURITY TOOLS TITLE
+        ========================== -->
+
+        <section class="dashboard-section-title">
+
+            <span>
+                SECURITY TOOLS
+            </span>
+
+            <h2>
+                Protect Yourself Online
+            </h2>
+
+            <p>
+                Check suspicious links, messages,
+                emails, phone numbers and QR codes
+                before interacting with them.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             SECURITY TOOLS
+        ========================== -->
+
+        <section class="security-tools-grid">
+
+
+            <!-- URL CHECKER -->
+
+            <div class="security-tool-card">
+
+                <div class="tool-icon">
+                    🔗
+                </div>
+
+                <div class="tool-content">
+
+                    <span class="tool-category">
+                        QUICK CHECK
+                    </span>
+
+                    <h3>
+                        URL Security Scanner
+                    </h3>
+
+                    <p>
+                        Check unfamiliar websites
+                        and links for potential
+                        security risks.
+                    </p>
+
+                    <a
+                        href="url-checker.html"
+                        class="tool-button">
+
+                        Start URL Scan
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MESSAGE SCANNER -->
+
+            <div class="security-tool-card">
+
+                <div class="tool-icon">
+                    💬
+                </div>
+
+                <div class="tool-content">
+
+                    <span class="tool-category">
+                        SCAM DETECTION
+                    </span>
+
+                    <h3>
+                        Message Scam Detector
+                    </h3>
+
+                    <p>
+                        Analyze suspicious SMS,
+                        WhatsApp and social media
+                        messages.
+                    </p>
+
+                    <a
+                        href="scam-detector.html"
+                        class="tool-button">
+
+                        Analyze Message
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- EMAIL CHECKER -->
+
+            <div class="security-tool-card">
+
+                <div class="tool-icon">
+                    📧
+                </div>
+
+                <div class="tool-content">
+
+                    <span class="tool-category">
+                        EMAIL SECURITY
+                    </span>
+
+                    <h3>
+                        Email Security Checker
+                    </h3>
+
+                    <p>
+                        Check email addresses for
+                        suspicious patterns and
+                        possible phishing indicators.
+                    </p>
+
+                    <a
+                        href="email-checker.html"
+                        class="tool-button">
+
+                        Check Email
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PHONE CHECKER -->
+
+            <div class="security-tool-card">
+
+                <div class="tool-icon">
+                    📱
+                </div>
+
+                <div class="tool-content">
+
+                    <span class="tool-category">
+                        PHONE SECURITY
+                    </span>
+
+                    <h3>
+                        Phone Number Checker
+                    </h3>
+
+                    <p>
+                        Check suspicious phone numbers
+                        and learn how to handle
+                        scam calls safely.
+                    </p>
+
+                    <a
+                        href="phone-checker.html"
+                        class="tool-button">
+
+                        Check Number
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QR SCANNER -->
+
+            <div class="security-tool-card">
+
+                <div class="tool-icon">
+                    📷
+                </div>
+
+                <div class="tool-content">
+
+                    <span class="tool-category">
+                        QR SECURITY
+                    </span>
+
+                    <h3>
+                        QR Code Scanner
+                    </h3>
+
+                    <p>
+                        Scan QR codes and inspect
+                        decoded links before visiting
+                        unfamiliar websites.
+                    </p>
+
+                    <a
+                        href="qr-checker.html"
+                        class="tool-button">
+
+                        Scan QR Code
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CYBER SAFETY QUIZ -->
+
+            <div class="security-tool-card">
+
+                <div class="tool-icon">
+                    🎮
+                </div>
+
+                <div class="tool-content">
+
+                    <span class="tool-category">
+                        LEARN & TEST
+                    </span>
+
+                    <h3>
+                        Cyber Safety Quiz
+                    </h3>
+
+                    <p>
+                        Test your knowledge about
+                        phishing, OTP fraud, passwords
+                        and online safety.
+                    </p>
+
+                    <a
+                        href="quiz.html"
+                        class="tool-button">
+
+                        Take Quiz
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             MONITOR & RESPOND
+        ========================== -->
+
+        <section class="dashboard-section-title lower-section">
+
+            <span>
+                MONITOR & RESPOND
+            </span>
+
+            <h2>
+                Security Resources
+            </h2>
+
+            <p>
+                Review your security activity and
+                access guidance when you need help.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             RESOURCE CARDS
+        ========================== -->
+
+        <section class="resource-grid">
+
+
+            <!-- SCAN HISTORY -->
+
+            <div class="resource-card">
+
+                <div class="resource-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <span>
+                        ACTIVITY
+                    </span>
+
+                    <h3>
+                        Scan History
+                    </h3>
+
+                    <p>
+                        View your previous URL and
+                        message security checks.
+                    </p>
+
+                    <a href="scan-history.html">
+                        View Scan History →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CYBER CRIME HELP -->
+
+            <div class="resource-card emergency-resource">
+
+                <div class="resource-icon">
+                    🆘
+                </div>
+
+                <div>
+
+                    <span>
+                        EMERGENCY SUPPORT
+                    </span>
+
+                    <h3>
+                        Cyber Crime Help
+                    </h3>
+
+                    <p>
+                        Find important information
+                        about what to do after a
+                        suspected cybercrime incident.
+                    </p>
+
+                    <a href="emergency-help.html">
+                        Get Help & Guidance →
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             EXISTING FEATURES
+        ========================== -->
+
+        <section class="dashboard-section-title lower-section">
+
+            <span>
+                QUICK ACCESS
+            </span>
+
+            <h2>
+                More CyberShield Services
+            </h2>
+
+        </section>
+
+
+
+        <section class="dashboard-grid">
+
+
+            <!-- REPORT -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🚨
+                </div>
+
+                <h2>
+                    Report a Scam
+                </h2>
+
+                <p>
+                    Report suspicious cyber crime
+                    incidents to help improve
+                    cyber safety.
+                </p>
+
+                <a href="report.html">
+                    Report Now →
+                </a>
+
+            </div>
+
+
+
+            <!-- AWARENESS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    📖
+                </div>
+
+                <h2>
+                    Cyber Awareness
+                </h2>
+
+                <p>
+                    Learn how to identify phishing,
+                    financial scams and other
+                    cyber threats.
+                </p>
+
+                <a href="awareness.html">
+                    Learn More →
+                </a>
+
+            </div>
+
+
+
+            <!-- ALERTS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🔔
+                </div>
+
+                <h2>
+                    Security Alerts
+                </h2>
+
+                <p>
+                    View important cybersecurity
+                    alerts and safety information.
+                </p>
+
+                <a href="alerts.html">
+                    View Alerts →
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             STAY PROTECTED
+        ========================== -->
+
+        <section class="security-banner">
+
+            <div>
+
+                <span>
+                    🛡️
+                </span>
+
+                <div>
+
+                    <h2>
+                        Stay Protected
+                    </h2>
+
+                    <p>
+                        Never share OTPs, passwords
+                        or banking information with
+                        unknown people. Always verify
+                        links and messages before
+                        interacting with them.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         DASHBOARD SCRIPT
+    ========================== -->
+
+    <script>
+
+        const userData =
+            localStorage.getItem("user");
+
+
+        if (!userData) {
+
+            window.location.replace(
+                "login.html"
+            );
+
+        }
+
+        else {
+
+            const user =
+                JSON.parse(userData);
+
+
+            document
+                .getElementById("userName")
+                .textContent =
+                user.name || "User";
+
+
+            document
+                .getElementById("displayName")
+                .textContent =
+                user.name || "User";
+
+
+            document
+                .getElementById("displayEmail")
+                .textContent =
+                user.email ||
+                "Not available";
+
+        }
+
+
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener(
+                "click",
+                function () {
+
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+
+                    localStorage.removeItem(
+                        "user"
+                    );
+
+
+                    window.location.replace(
+                        "login.html"
+                    );
+
+                }
+            );
+
+    </script>
+</body>
+
+</html>

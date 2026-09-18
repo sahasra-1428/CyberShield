@@ -1,0 +1,3359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSP | Cyber Crime Protection System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #040b14;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* =====================================================
+           BACKGROUND
+           ===================================================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.35;
+
+            background-image:
+                linear-gradient(rgba(0, 180, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 180, 255, 0.025) 1px, transparent 1px);
+
+            background-size: 45px 45px;
+            z-index: -1;
+        }
+
+        /* =====================================================
+           NAVBAR
+           ===================================================== */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+
+            background: rgba(3, 10, 19, 0.92);
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(0, 190, 255, 0.15);
+        }
+
+        .nav-container {
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-shield {
+            width: 43px;
+            height: 43px;
+
+            border: 2px solid #00bfff;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #00c8ff;
+            font-size: 21px;
+
+            box-shadow:
+                0 0 18px rgba(0, 191, 255, 0.25);
+
+            background: rgba(0, 191, 255, 0.07);
+        }
+
+        .logo-text {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: #00c8ff;
+        }
+
+        .logo-subtitle {
+            display: block;
+            color: #71869b;
+            font-size: 9px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+
+            color: #a9bbcc;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00c8ff;
+        }
+
+        .nav-links a.active {
+            color: #00c8ff;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: -10px;
+
+            height: 2px;
+            background: #00c8ff;
+
+            box-shadow: 0 0 10px #00c8ff;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login-btn {
+            padding: 9px 18px;
+
+            border: 1px solid #23506c;
+            border-radius: 25px;
+
+            color: #d5e5f2;
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            border-color: #00c8ff;
+            color: #00c8ff;
+        }
+
+        .scan-nav-btn {
+            padding: 10px 20px;
+
+            background: linear-gradient(
+                135deg,
+                #008eea,
+                #00c8ff
+            );
+
+            color: #02101b;
+
+            border-radius: 25px;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            transition: 0.3s;
+        }
+
+        .scan-nav-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 25px rgba(0, 200, 255, 0.35);
+        }
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .hero {
+            min-height: 700px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 70% 45%,
+                    rgba(0, 130, 255, 0.13),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(111, 55, 255, 0.08),
+                    transparent 25%
+                );
+        }
+
+        .hero-container {
+            display: grid;
+
+            grid-template-columns:
+                0.95fr 1.05fr;
+
+            gap: 55px;
+
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+
+            padding: 8px 15px;
+
+            border-radius: 25px;
+
+            border: 1px solid rgba(0, 200, 255, 0.3);
+
+            background: rgba(0, 200, 255, 0.06);
+
+            color: #00c8ff;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 1.3px;
+
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 5vw, 72px);
+
+            line-height: 1.02;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 23px;
+        }
+
+        .hero h1 .blue {
+            color: #00bfff;
+
+            text-shadow:
+                0 0 30px rgba(0, 191, 255, 0.25);
+        }
+
+        .hero h1 .purple {
+            background: linear-gradient(
+                90deg,
+                #00c8ff,
+                #7d5cff
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            max-width: 580px;
+
+            color: #91a7bb;
+
+            font-size: 16px;
+
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .primary-btn {
+            border: none;
+
+            padding: 14px 23px;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #008fe8,
+                    #00c8ff
+                );
+
+            color: #03111b;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 190, 255, 0.25);
+        }
+
+        .secondary-btn {
+            padding: 13px 22px;
+
+            border: 1px solid #28506c;
+
+            border-radius: 9px;
+
+            color: #c9d8e5;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .secondary-btn:hover {
+            border-color: #00c8ff;
+            color: #00c8ff;
+        }
+
+        /* =====================================================
+           HERO SECURITY CENTER
+           ===================================================== */
+
+        .security-visual {
+            position: relative;
+
+            min-height: 500px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .security-glow {
+            position: absolute;
+
+            width: 390px;
+            height: 390px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0, 191, 255, 0.18),
+                    transparent 65%
+                );
+
+            animation: pulseGlow 3s infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%, 100% {
+                transform: scale(0.95);
+                opacity: 0.65;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        .shield {
+            width: 220px;
+            height: 260px;
+
+            clip-path: polygon(
+                50% 0%,
+                90% 16%,
+                84% 65%,
+                50% 100%,
+                16% 65%,
+                10% 16%
+            );
+
+            border: 3px solid #00c8ff;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #073a68,
+                    #07172d
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            box-shadow:
+                0 0 35px rgba(0, 200, 255, 0.4),
+                inset 0 0 40px rgba(0, 200, 255, 0.12);
+
+            animation: shieldFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes shieldFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .shield-inner {
+            width: 105px;
+            height: 105px;
+
+            border-radius: 50%;
+
+            border: 2px solid rgba(0, 200, 255, 0.6);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+
+            box-shadow:
+                0 0 25px rgba(0, 200, 255, 0.3);
+        }
+
+        /* =====================================================
+           THREAT TAGS
+           ===================================================== */
+
+        .threat-tag {
+            position: absolute;
+
+            padding: 10px 15px;
+
+            border: 1px solid rgba(0, 190, 255, 0.35);
+
+            background: rgba(5, 20, 37, 0.9);
+
+            border-radius: 9px;
+
+            font-size: 11px;
+
+            color: #c6d9e8;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.25);
+
+            animation: tagFloat 4s ease-in-out infinite;
+        }
+
+        .tag-1 {
+            top: 65px;
+            left: 35px;
+        }
+
+        .tag-2 {
+            top: 105px;
+            right: 5px;
+            animation-delay: 0.8s;
+        }
+
+        .tag-3 {
+            bottom: 120px;
+            left: 55px;
+            animation-delay: 1.5s;
+        }
+
+        .tag-4 {
+            bottom: 80px;
+            right: 25px;
+            animation-delay: 2s;
+        }
+
+        @keyframes tagFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+
+        /* =====================================================
+           SECURITY CENTER
+           ===================================================== */
+
+        .security-center {
+            position: absolute;
+
+            right: -10px;
+            top: 80px;
+
+            width: 260px;
+
+            background: rgba(5, 18, 32, 0.94);
+
+            border: 1px solid rgba(0, 200, 255, 0.35);
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .center-title {
+            font-size: 15px;
+            font-weight: 800;
+
+            margin-bottom: 3px;
+        }
+
+        .center-subtitle {
+            color: #718ba0;
+            font-size: 10px;
+
+            margin-bottom: 15px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            border-top: 1px solid rgba(255,255,255,0.06);
+
+            font-size: 11px;
+        }
+
+        .check-name {
+            color: #b6c8d8;
+        }
+
+        .check {
+            color: #3fe39c;
+        }
+
+        /* =====================================================
+           STATS
+           ===================================================== */
+
+        .stats-section {
+            border-top: 1px solid #14283b;
+            border-bottom: 1px solid #14283b;
+
+            background: #071321;
+
+            padding: 30px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .stat-card {
+            text-align: center;
+
+            border-right: 1px solid #1c3245;
+        }
+
+        .stat-card:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            color: #00c8ff;
+
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            color: #74899d;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        /* =====================================================
+           SECTION HEADINGS
+           ===================================================== */
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            color: #00c8ff;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: #7f95a9;
+
+            max-width: 650px;
+        }
+
+        /* =====================================================
+           ANALYTICS
+           ===================================================== */
+
+        .analytics-section {
+            background: #06101c;
+        }
+
+        .analytics-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 0.8fr;
+
+            gap: 20px;
+        }
+
+        .analytics-card {
+            background: #091827;
+
+            border: 1px solid #193247;
+
+            border-radius: 15px;
+
+            padding: 25px;
+        }
+
+        .analytics-card-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .analytics-card-header h3 {
+            font-size: 17px;
+        }
+
+        .analytics-card-header span {
+            color: #60788d;
+
+            font-size: 10px;
+
+            padding: 5px 9px;
+
+            border: 1px solid #213c52;
+
+            border-radius: 20px;
+        }
+
+        #threatChart {
+            width: 100%;
+            height: 260px;
+        }
+
+    
+        /* =====================================================
+           TOOLS
+           ===================================================== */
+
+        .tools-section {
+            background: #071321;
+        }
+
+        .tools-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .tool-card {
+            position: relative;
+
+            padding: 27px;
+
+            background: #091a2a;
+
+            border: 1px solid #19364c;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+        }
+
+        .tool-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 2px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #00c8ff,
+                transparent
+            );
+
+            transform: translateX(-100%);
+
+            transition: 0.5s;
+        }
+
+        .tool-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px);
+
+            border-color: #00aeea;
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,0.25);
+        }
+
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0, 190, 255, 0.07);
+
+            border: 1px solid rgba(0, 190, 255, 0.2);
+
+            font-size: 21px;
+
+            margin-bottom: 18px;
+        }
+
+        .tool-card h3 {
+            font-size: 18px;
+
+            margin-bottom: 7px;
+        }
+
+        .tool-card p {
+            color: #7990a4;
+
+            font-size: 12px;
+
+            min-height: 40px;
+
+            margin-bottom: 18px;
+        }
+
+        .tool-link {
+            color: #00c8ff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.6px;
+        }
+
+        /* =====================================================
+           SCANNER
+           ===================================================== */
+
+        .scanner-section {
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(0, 170, 255, 0.06),
+                    transparent 45%
+                );
+        }
+
+        .scanner-box {
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 35px;
+
+            background: #071625;
+
+            border: 1px solid #1d4058;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .scanner-input {
+            display: flex;
+
+            gap: 10px;
+        }
+
+        .scanner-input input {
+            flex: 1;
+
+            padding: 15px;
+
+            background: #050e18;
+
+            border: 1px solid #25465e;
+
+            border-radius: 9px;
+
+            color: white;
+
+            outline: none;
+        }
+
+        .scanner-input input:focus {
+            border-color: #00c8ff;
+
+            box-shadow:
+                0 0 15px rgba(0,200,255,0.1);
+        }
+
+        .scanner-input button {
+            padding: 0 25px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #00b8ef;
+
+            color: #03111a;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+        .scan-progress {
+            display: none;
+
+            margin-top: 25px;
+        }
+
+        .scan-progress.active {
+            display: block;
+        }
+
+        .scan-status {
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #8ba0b4;
+
+            font-size: 11px;
+
+            margin-bottom: 9px;
+        }
+
+        .progress-bar {
+            height: 7px;
+
+            background: #102638;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #008fe8,
+                    #00e0ff
+                );
+
+            transition: width 0.2s;
+
+            box-shadow:
+                0 0 15px #00c8ff;
+        }
+
+        .scan-checks {
+            margin-top: 20px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 8px;
+        }
+
+        .scan-check {
+            padding: 9px 12px;
+
+            border-radius: 7px;
+
+            background: rgba(255,255,255,0.025);
+
+            color: #60788d;
+
+            font-size: 11px;
+        }
+
+        .scan-check.done {
+            color: #46dfa2;
+        }
+
+        .scan-result {
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(45,220,155,0.3);
+
+            background: rgba(45,220,155,0.04);
+        }
+
+        .scan-result.show {
+            display: block;
+        }
+
+        .result-title {
+            color: #48dda1;
+
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+        .result-text {
+            color: #8da2b5;
+
+            font-size: 12px;
+        }
+
+        /* =====================================================
+           WORKFLOW
+           ===================================================== */
+
+        .workflow-section {
+            background: #071321;
+        }
+
+        .workflow {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .workflow-card {
+            text-align: center;
+
+            padding: 28px 20px;
+
+            border: 1px solid #193247;
+
+            background: #091827;
+
+            border-radius: 13px;
+        }
+
+        .step {
+            width: 44px;
+            height: 44px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            border: 1px solid #00bfff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #00c8ff;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 0 15px rgba(0,190,255,0.12);
+        }
+
+        .workflow-card h3 {
+            font-size: 16px;
+
+            margin-bottom: 6px;
+        }
+
+        .workflow-card p {
+            color: #778da1;
+
+            font-size: 11px;
+        }
+
+        /* =====================================================
+           RECENT SCANS
+           ===================================================== */
+
+        .history-section {
+            background: #06101c;
+        }
+
+        .history-box {
+            overflow-x: auto;
+
+            border: 1px solid #193247;
+
+            border-radius: 14px;
+
+            background: #091827;
+        }
+
+        .history-table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 650px;
+        }
+
+        .history-table th,
+        .history-table td {
+            padding: 16px 18px;
+
+            text-align: left;
+
+            border-bottom: 1px solid #152b3d;
+
+            font-size: 12px;
+        }
+
+        .history-table th {
+            color: #5f778c;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .history-table td {
+            color: #9eb1c1;
+        }
+
+        .risk-badge {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+        .risk-safe {
+            color: #36d99c;
+
+            background: rgba(54,217,156,0.08);
+        }
+
+        .risk-medium {
+            color: #ffc857;
+
+            background: rgba(255,200,87,0.08);
+        }
+
+        .risk-high {
+            color: #ff6472;
+
+            background: rgba(255,100,114,0.08);
+        }
+
+        /* =====================================================
+           AWARENESS
+           ===================================================== */
+
+        .awareness-section {
+            background: #071321;
+        }
+
+        .awareness-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 17px;
+        }
+
+        .awareness-card {
+            padding: 24px;
+
+            background: #091827;
+
+            border: 1px solid #193247;
+
+            border-radius: 13px;
+
+            transition: 0.3s;
+        }
+
+        .awareness-card:hover {
+            transform: translateY(-4px);
+
+            border-color: #00aeea;
+        }
+
+        .awareness-icon {
+            font-size: 24px;
+
+            margin-bottom: 13px;
+        }
+
+        .awareness-card h3 {
+            font-size: 16px;
+
+            margin-bottom: 6px;
+        }
+
+        .awareness-card p {
+            color: #778da1;
+
+            font-size: 11px;
+
+            margin-bottom: 14px;
+        }
+
+        .learn-link {
+            color: #00c8ff;
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+        /* =====================================================
+           REPORT
+           ===================================================== */
+
+        .report-section {
+            padding-top: 40px;
+        }
+
+        .report-box {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            padding: 45px;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(0,190,255,0.25);
+
+            background:
+                radial-gradient(
+                    circle at 80% 50%,
+                    rgba(0,190,255,0.08),
+                    transparent 30%
+                ),
+                #091a2b;
+        }
+
+        .report-box h2 {
+            font-size: 29px;
+
+            margin-bottom: 7px;
+        }
+
+        .report-box p {
+            color: #7f96a9;
+
+            max-width: 680px;
+
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+            background: #030911;
+
+            border-top: 1px solid #15283a;
+
+            padding: 40px 0 22px;
+        }
+
+        .footer-main {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding-bottom: 28px;
+        }
+
+        .footer-brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .footer-brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid #00bfff;
+
+            border-radius: 9px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #00c8ff;
+        }
+
+        .footer-brand h3 {
+            font-size: 16px;
+        }
+
+        .footer-brand p {
+            color: #60778b;
+
+            font-size: 9px;
+        }
+
+        .footer-message {
+            color: #60788c;
+
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+
+            gap: 20px;
+
+            color: #70869a;
+
+            font-size: 11px;
+        }
+
+        .footer-links a:hover {
+            color: #00c8ff;
+        }
+
+        .copyright {
+            border-top: 1px solid #122333;
+
+            padding-top: 18px;
+
+            text-align: center;
+
+            color: #4d6375;
+
+            font-size: 9px;
+        }
+
+        /* =====================================================
+           PREMIUM ENTERPRISE UPGRADE
+           ===================================================== */
+
+        body {
+            background:
+                radial-gradient(circle at top, rgba(0, 190, 255, 0.12), transparent 28%),
+                linear-gradient(180deg, #020912 0%, #030b18 26%, #050d1b 100%);
+        }
+
+        .navbar {
+            background: rgba(3, 11, 20, 0.78);
+            border-bottom: 1px solid rgba(114, 170, 210, 0.12);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-links a {
+            padding: 8px 0;
+            font-size: 12px;
+            letter-spacing: 0.4px;
+        }
+
+        .nav-links a.active::after {
+            bottom: -14px;
+        }
+
+        .login-btn,
+        .scan-nav-btn,
+        .primary-btn,
+        .secondary-btn,
+        .scanner-input button {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .login-btn::before,
+        .scan-nav-btn::before,
+        .primary-btn::before,
+        .secondary-btn::before,
+        .scanner-input button::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.18) 50%, transparent 80%);
+            transform: translateX(-120%);
+            transition: transform 0.8s ease;
+        }
+
+        .login-btn:hover::before,
+        .scan-nav-btn:hover::before,
+        .primary-btn:hover::before,
+        .secondary-btn:hover::before,
+        .scanner-input button:hover::before {
+            transform: translateX(120%);
+        }
+
+        .login-btn:hover,
+        .scan-nav-btn:hover,
+        .primary-btn:hover,
+        .secondary-btn:hover,
+        .scanner-input button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 38px rgba(0, 191, 255, 0.18);
+        }
+
+        .hero {
+            padding-top: 60px;
+            padding-bottom: 90px;
+        }
+
+        .hero-badge {
+            background: rgba(6, 21, 30, 0.8);
+            box-shadow: inset 0 0 22px rgba(0, 191, 255, 0.08), 0 0 0 1px rgba(0, 191, 255, 0.12);
+        }
+
+        .hero h1 .blue {
+            text-shadow: 0 0 28px rgba(0, 191, 255, 0.22);
+        }
+
+        .security-visual .shield {
+            box-shadow:
+                0 0 35px rgba(0, 200, 255, 0.42),
+                inset 0 0 35px rgba(0, 200, 255, 0.12);
+        }
+
+        .security-center {
+            background: rgba(6, 19, 29, 0.9);
+            border: 1px solid rgba(0, 200, 255, 0.18);
+            box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28), inset 0 0 18px rgba(0, 200, 255, 0.02);
+        }
+
+        .threat-tag {
+            background: rgba(6, 19, 29, 0.96);
+            border: 1px solid rgba(0, 200, 255, 0.22);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+        }
+
+        .stats-section {
+            background: linear-gradient(180deg, rgba(8, 18, 31, 0.96), rgba(5, 16, 28, 0.98));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+        }
+
+        .stat-card {
+            border-right: 1px solid rgba(122, 167, 205, 0.15);
+            padding: 12px 8px;
+        }
+
+        .stat-number {
+            text-shadow: 0 0 20px rgba(0, 194, 255, 0.18);
+        }
+
+        .analytics-card,
+        .tool-card,
+        .workflow-card,
+        .awareness-card,
+        .history-box,
+        .scanner-box,
+        .report-box {
+            border: 1px solid rgba(113, 167, 209, 0.18);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.14);
+        }
+
+        .tool-card:hover,
+        .workflow-card:hover,
+        .awareness-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 190, 255, 0.32);
+            box-shadow: 0 18px 46px rgba(0, 190, 255, 0.08), 0 0 0 1px rgba(0, 190, 255, 0.08);
+        }
+
+        .tool-icon,
+        .awareness-icon,
+        .footer-brand-icon {
+            box-shadow: inset 0 0 24px rgba(0, 190, 255, 0.08), 0 0 18px rgba(0, 190, 255, 0.06);
+        }
+
+        .scanner-input input {
+            background: rgba(6, 15, 24, 0.92);
+        }
+
+        .scanner-input input:focus {
+            border-color: rgba(0, 200, 255, 0.8);
+            box-shadow: 0 0 0 4px rgba(0, 200, 255, 0.08);
+        }
+
+        .section-header h2,
+        .report-box h2 {
+            letter-spacing: -1px;
+        }
+
+        .report-box {
+            background:
+                radial-gradient(circle at 75% 50%, rgba(0, 190, 255, 0.09), transparent 30%),
+                #091a2b;
+        }
+
+        .footer-links a {
+            transition: color 0.2s ease;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 700px;
+        }
+
+        .tool-card,
+        .workflow-card,
+        .awareness-card,
+        .analytics-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::after,
+        .workflow-card::after,
+        .awareness-card::after,
+        .analytics-card::after {
+            content: "";
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-card:hover::after,
+        .workflow-card:hover::after,
+        .awareness-card:hover::after,
+        .analytics-card:hover::after {
+            opacity: 1;
+        }
+
+        .scanner-box {
+            background: linear-gradient(180deg, rgba(8, 22, 34, 0.96), rgba(6, 17, 28, 0.98));
+        }
+
+        .scan-result {
+            background: linear-gradient(180deg, rgba(28, 90, 68, 0.12), rgba(15, 28, 36, 0.9));
+            border-color: rgba(70, 220, 160, 0.42);
+        }
+
+        .risk-badge {
+            letter-spacing: 0.6px;
+            box-shadow: inset 0 0 12px rgba(255,255,255,0.04);
+        }
+
+        .app-shell {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            letter-spacing: 2.6px;
+        }
+
+        .nav-container,
+        .stats-grid,
+        .tools-grid,
+        .workflow,
+        .awareness-grid,
+        .history-box,
+        .report-box,
+        .analytics-grid,
+        .scanner-box {
+            border-radius: 18px;
+        }
+
+        .hero .nav-links a {
+            color: #afc0d6;
+        }
+
+        .hero .nav-links a:hover,
+        .hero .nav-links a.active {
+            color: #2ecbff;
+        }
+
+        .security-visual { 
+            filter: drop-shadow(0 24px 45px rgba(0, 187, 255, 0.14));
+        }
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media(max-width: 1000px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .security-visual {
+                min-height: 560px;
+            }
+
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid,
+            .awareness-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .workflow {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media(max-width: 650px) {
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+
+                letter-spacing: -2px;
+            }
+
+            .security-center {
+                position: relative;
+
+                right: auto;
+                top: auto;
+
+                width: 240px;
+            }
+
+            .security-visual {
+                min-height: 570px;
+            }
+
+            .tag-1 {
+                left: 0;
+            }
+
+            .tag-2 {
+                right: 0;
+            }
+
+            .tag-3 {
+                left: 0;
+            }
+
+            .tag-4 {
+                right: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card {
+                border-right: none;
+            }
+
+            .tools-grid,
+            .awareness-grid,
+            .workflow {
+                grid-template-columns: 1fr;
+            }
+
+            .scanner-input {
+                flex-direction: column;
+            }
+
+            .scanner-input button {
+                padding: 13px;
+            }
+
+            .scan-checks {
+                grid-template-columns: 1fr;
+            }
+
+            .report-box {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding: 30px;
+            }
+
+            .footer-main {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 20px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+            }
+
+        }
+
+/* ================================
+   MOBILE
+   ================================ */
+
+@media(max-width: 850px) {
+
+    .ai-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media(max-width: 550px) {
+
+    .ai-indicators {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="navbar">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-shield">
+                🛡️
+            </div>
+
+            <div>
+
+                <div class="logo-text">
+                    C<span>SP</span>
+                </div>
+
+                <span class="logo-subtitle">
+                    Cyber Crime Protection System
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="index.html" class="active">
+                Home
+            </a>
+
+            <a href="#tools">
+                Tools
+            </a>
+
+            <a href="#analytics">
+                Analytics
+            </a>
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+            <a href="#awareness">
+                Awareness
+            </a>
+
+            <a href="#report">
+                Report
+            </a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+
+            <a href="#scanner" class="scan-nav-btn">
+                Scan Now
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<header class="hero">
+
+    <div class="container hero-container">
+
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                ● ACADEMIC CYBERSECURITY PROJECT
+            </div>
+
+
+            <h1>
+
+                CYBER CRIME
+
+                <span class="blue">
+                    PROTECTION
+                </span>
+
+                <span class="purple">
+                    SYSTEM
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                A unified cybersecurity platform designed to help
+                users identify suspicious digital content, understand
+                common cyber threats and take safer online actions.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a href="#scanner" class="primary-btn">
+                    🔍 Check a URL
+                </a>
+
+                <a href="scam-detector.html" class="secondary-btn">
+                    💬 Analyze Message
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- SECURITY VISUAL -->
+
+        <div class="security-visual">
+
+            <div class="security-glow"></div>
+
+
+            <div class="threat-tag tag-1">
+                ✉ Phishing
+            </div>
+
+            <div class="threat-tag tag-2">
+                🦠 Malware
+            </div>
+
+            <div class="threat-tag tag-3">
+                🎭 Fraud
+            </div>
+
+            <div class="threat-tag tag-4">
+                ⚠ Scam
+            </div>
+
+
+            <div class="shield">
+
+                <div class="shield-inner">
+                    🔒
+                </div>
+
+            </div>
+
+
+            <div class="security-center">
+
+                <div class="center-title">
+                    🛡 CSP Security Center
+                </div>
+
+                <div class="center-subtitle">
+                    Scan & Check Modules
+                </div>
+
+
+                <div class="check-item">
+
+                    <span class="check-name">
+                        🌐 URL
+                    </span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="check-item">
+
+                    <span class="check-name">
+                        💬 MESSAGE
+                    </span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="check-item">
+
+                    <span class="check-name">
+                        ✉ EMAIL
+                    </span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="check-item">
+
+                    <span class="check-name">
+                        📱 PHONE
+                    </span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="check-item">
+
+                    <span class="check-name">
+                        ▣ QR
+                    </span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     STATS
+     ===================================================== -->
+
+<section class="stats-section">
+
+    <div class="container stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                06
+            </div>
+
+            <div class="stat-label">
+                Security Tools
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                04
+            </div>
+
+            <div class="stat-label">
+                Analysis Steps
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                06
+            </div>
+
+            <div class="stat-label">
+                Awareness Topics
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                01
+            </div>
+
+            <div class="stat-label">
+                Unified System
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SECURITY TOOLS
+     ===================================================== -->
+
+<section id="tools" class="tools-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-label">
+                OUR TOOLS
+            </div>
+
+            <h2>
+                What Can CSP Check?
+            </h2>
+
+            <p>
+                Multiple security modules designed to help users
+                examine suspicious digital content.
+            </p>
+
+        </div>
+
+
+        <div class="tools-grid">
+
+
+            <!-- URL -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    URL Checker
+                </h3>
+
+                <p>
+                    Check website addresses for suspicious patterns
+                    and common risk indicators.
+                </p>
+
+                <a href="url-checker.html" class="tool-link">
+                    OPEN TOOL →
+                </a>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    💬
+                </div>
+
+                <h3>
+                    Message Scam Detector
+                </h3>
+
+                <p>
+                    Analyze messages for scam phrases, suspicious
+                    requests and warning signs.
+                </p>
+
+                <a href="scam-detector.html" class="tool-link">
+                    OPEN TOOL →
+                </a>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    ✉️
+                </div>
+
+                <h3>
+                    Email Checker
+                </h3>
+
+                <p>
+                    Check email addresses for basic format and
+                    suspicious scam-related indicators.
+                </p>
+
+                <a href="email-checker.html" class="tool-link">
+                    OPEN TOOL →
+                </a>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Phone Checker
+                </h3>
+
+                <p>
+                    Perform a basic screening of phone numbers
+                    for suspicious patterns.
+                </p>
+
+                <a href="phone-checker.html" class="tool-link">
+                    OPEN TOOL →
+                </a>
+
+            </div>
+
+
+            <!-- QR -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    QR Code Checker
+                </h3>
+
+                <p>
+                    Scan QR content and identify common suspicious
+                    links and scam indicators.
+                </p>
+
+                <a href="qr-checker.html" class="tool-link">
+                    OPEN TOOL →
+                </a>
+
+            </div>
+
+
+            <!-- REPORT -->
+
+            <div class="tool-card">
+
+                <div class="tool-icon">
+                    🚨
+                </div>
+
+                <h3>
+                    Cyber Crime Report
+                </h3>
+
+                <p>
+                    Record information about a suspected cybercrime
+                    incident through the reporting module.
+                </p>
+
+                <a href="report.html" class="tool-link">
+                    REPORT INCIDENT →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LIVE-STYLE SCANNER
+     ===================================================== -->
+
+<section id="scanner" class="scanner-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-label">
+                SECURITY SCANNER
+            </div>
+
+            <h2>
+                Check Suspicious Content
+            </h2>
+
+            <p>
+                Enter a URL to demonstrate the CSP security
+                analysis workflow.
+            </p>
+
+        </div>
+
+
+        <div class="scanner-box">
+
+
+            <div class="scanner-input">
+
+                <input
+                    type="text"
+                    id="scanInput"
+                    placeholder="Enter a website URL..."
+                >
+
+                <button onclick="startScan()">
+                    SCAN
+                </button>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div id="scanProgress" class="scan-progress">
+
+                <div class="scan-status">
+
+                    <span id="scanStatus">
+                        Initializing security scan...
+                    </span>
+
+                    <span id="scanPercent">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        id="progressFill"
+                        class="progress-fill">
+                    </div>
+
+                </div>
+
+
+                <div class="scan-checks">
+
+                    <div
+                        id="check1"
+                        class="scan-check">
+                        ○ URL structure analysis
+                    </div>
+
+                    <div
+                        id="check2"
+                        class="scan-check">
+                        ○ Suspicious pattern check
+                    </div>
+
+                    <div
+                        id="check3"
+                        class="scan-check">
+                        ○ Domain indicator check
+                    </div>
+
+                    <div
+                        id="check4"
+                        class="scan-check">
+                        ○ Risk assessment
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULT -->
+
+            <div id="scanResult" class="scan-result">
+
+                <div class="result-title">
+                    ✓ SECURITY SCAN COMPLETE
+                </div>
+
+                <div class="result-text">
+                    The demonstration scan completed successfully.
+                    Open the URL Checker for the project's detailed
+                    screening functionality.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     HOW IT WORKS
+     ===================================================== -->
+
+<section id="how-it-works" class="workflow-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-label">
+                SIMPLE PROCESS
+            </div>
+
+            <h2>
+                How CSP Protects Users
+            </h2>
+
+            <p>
+                CSP follows a simple four-stage workflow for
+                examining suspicious digital content.
+            </p>
+
+        </div>
+
+
+        <div class="workflow">
+
+
+            <div class="workflow-card">
+
+                <div class="step">
+                    01
+                </div>
+
+                <h3>
+                    ENTER
+                </h3>
+
+                <p>
+                    Provide a URL, message, email, phone number
+                    or QR content.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-card">
+
+                <div class="step">
+                    02
+                </div>
+
+                <h3>
+                    ANALYZE
+                </h3>
+
+                <p>
+                    CSP performs predefined checks on the
+                    provided information.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-card">
+
+                <div class="step">
+                    03
+                </div>
+
+                <h3>
+                    IDENTIFY RISK
+                </h3>
+
+                <p>
+                    Suspicious indicators are presented as
+                    appropriate risk information.
+                </p>
+
+            </div>
+
+
+            <div class="workflow-card">
+
+                <div class="step">
+                    04
+                </div>
+
+                <h3>
+                    TAKE ACTION
+                </h3>
+
+                <p>
+                    Follow safety guidance, learn more or
+                    report suspicious activity.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     RECENT SCANS
+     ===================================================== -->
+
+<section class="history-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-label">
+                SCAN HISTORY
+            </div>
+
+            <h2>
+                Recent Security Activity
+            </h2>
+
+            <p>
+                Live monitoring of recent URL, SMS, email, and QR security checks.
+            </p>
+
+        </div>
+
+
+        <div class="history-box">
+
+            <table class="history-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Input
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Risk
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="activityTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     AWARENESS
+     ===================================================== -->
+
+<section id="awareness" class="awareness-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="section-label">
+                CYBER AWARENESS HUB
+            </div>
+
+            <h2>
+                Learn. Identify. Stay Safe.
+            </h2>
+
+            <p>
+                Understand common cyber threats and improve
+                your everyday digital safety.
+            </p>
+
+        </div>
+
+
+        <div class="awareness-grid">
+
+
+            <div class="awareness-card">
+
+                <div class="awareness-icon">
+                    🎣
+                </div>
+
+                <h3>
+                    Phishing
+                </h3>
+
+                <p>
+                    Learn how fake messages and websites are
+                    used to steal sensitive information.
+                </p>
+
+                <a
+                    href="phishing.html"
+                    class="learn-link">
+                    LEARN MORE →
+                </a>
+
+            </div>
+
+
+            <div class="awareness-card">
+
+                <div class="awareness-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Password Security
+                </h3>
+
+                <p>
+                    Learn safer password practices and account
+                    protection techniques.
+                </p>
+
+                <a
+                    href="password-security.html"
+                    class="learn-link">
+                    LEARN MORE →
+                </a>
+
+            </div>
+
+
+            <div class="awareness-card">
+
+                <div class="awareness-icon">
+                    💳
+                </div>
+
+                <h3>
+                    Financial Scams
+                </h3>
+
+                <p>
+                    Understand common banking, payment and
+                    financial scam techniques.
+                </p>
+
+                <a
+                    href="financial-scams.html"
+                    class="learn-link">
+                    LEARN MORE →
+                </a>
+
+            </div>
+
+
+            <div class="awareness-card">
+
+                <div class="awareness-icon">
+                    🔑
+                </div>
+
+                <h3>
+                    OTP Safety
+                </h3>
+
+                <p>
+                    Learn why OTPs should never be shared with
+                    unknown people.
+                </p>
+
+                <a
+                    href="otp-safety.html"
+                    class="learn-link">
+                    LEARN MORE →
+                </a>
+
+            </div>
+
+
+            <div class="awareness-card">
+
+                <div class="awareness-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Social Engineering
+                </h3>
+
+                <p>
+                    Understand how attackers manipulate users
+                    into revealing information.
+                </p>
+
+                <a
+                    href="social-engineering.html"
+                    class="learn-link">
+                    LEARN MORE →
+                </a>
+
+            </div>
+
+
+            <div class="awareness-card">
+
+                <div class="awareness-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Social Media Safety
+                </h3>
+
+                <p>
+                    Learn privacy and security practices for
+                    safer social media usage.
+                </p>
+
+                <a
+                    href="social-media-safety.html"
+                    class="learn-link">
+                    LEARN MORE →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REPORT
+     ===================================================== -->
+
+<section id="report" class="report-section">
+
+    <div class="container">
+
+        <div class="report-box">
+
+            <div>
+
+                <div class="section-label">
+                    INCIDENT REPORTING
+                </div>
+
+                <h2>
+                    See Something Suspicious?
+                </h2>
+
+                <p>
+                    Use CSP to record information about a suspected
+                    cybercrime incident and help promote safer
+                    digital practices.
+                </p>
+
+            </div>
+
+
+            <a
+                href="report.html"
+                class="primary-btn">
+
+                🚨 File a Report →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-main">
+
+
+            <div class="footer-brand">
+
+                <div class="footer-brand-icon">
+                    🛡️
+                </div>
+
+                <div>
+
+                    <h3>
+                        CSP
+                    </h3>
+
+                    <p>
+                        Cyber Crime Protection System
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-message">
+                Together for a Safer Digital World
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="#tools">
+                    Tools
+                </a>
+
+                <a href="#awareness">
+                    Awareness
+                </a>
+
+                <a href="report.html">
+                    Report
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 CSP — Cyber Crime Protection System |
+            Academic B.Tech Project
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+/* =====================================================
+   THREAT ACTIVITY GRAPH
+   Pure JavaScript Canvas
+   No external library required
+   ===================================================== */
+
+const canvas = document.getElementById("threatChart");
+
+if (!canvas) {
+    console.warn("Threat chart canvas not found on this page.");
+} else {
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) {
+        console.warn("Threat chart canvas is not supported in this browser.");
+    } else {
+        function drawThreatChart() {
+
+    const rect = canvas.getBoundingClientRect();
+
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+
+    ctx.scale(dpr, dpr);
+
+
+    const width = rect.width;
+    const height = rect.height;
+
+
+    ctx.clearRect(0, 0, width, height);
+
+
+    const padding = 35;
+
+    const graphWidth = width - padding * 2;
+
+    const graphHeight = height - padding * 2;
+
+
+    /* GRID */
+
+    ctx.strokeStyle = "rgba(120,160,190,0.10)";
+
+    ctx.lineWidth = 1;
+
+
+    for (let i = 0; i <= 4; i++) {
+
+        const y =
+            padding +
+            (graphHeight / 4) * i;
+
+        ctx.beginPath();
+
+        ctx.moveTo(padding, y);
+
+        ctx.lineTo(
+            width - padding,
+            y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    /* DATA */
+
+    const data = [
+        18,
+        31,
+        24,
+        42,
+        35,
+        51,
+        43,
+        62,
+        49,
+        68
+    ];
+
+
+    const maxValue = 80;
+
+
+    const points = data.map(
+        (value, index) => {
+
+            const x =
+                padding +
+                (graphWidth /
+                (data.length - 1)) *
+                index;
+
+            const y =
+                height -
+                padding -
+                (value / maxValue) *
+                graphHeight;
+
+            return {
+                x,
+                y
+            };
+
+        }
+    );
+
+
+    /* AREA */
+
+    const gradient =
+        ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            height
+        );
+
+    gradient.addColorStop(
+        0,
+        "rgba(0,200,255,0.20)"
+    );
+
+    gradient.addColorStop(
+        1,
+        "rgba(0,200,255,0)"
+    );
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        points[0].x,
+        height - padding
+    );
+
+
+    points.forEach(point => {
+
+        ctx.lineTo(
+            point.x,
+            point.y
+        );
+
+    });
+
+
+    ctx.lineTo(
+        points[points.length - 1].x,
+        height - padding
+    );
+
+    ctx.closePath();
+
+    ctx.fillStyle = gradient;
+
+    ctx.fill();
+
+
+    /* LINE */
+
+    ctx.beginPath();
+
+    points.forEach(
+        (point, index) => {
+
+            if (index === 0) {
+
+                ctx.moveTo(
+                    point.x,
+                    point.y
+                );
+
+            } else {
+
+                ctx.lineTo(
+                    point.x,
+                    point.y
+                );
+
+            }
+
+        }
+    );
+
+
+    ctx.strokeStyle = "#00c8ff";
+
+    ctx.lineWidth = 2.5;
+
+    ctx.stroke();
+
+
+    /* POINTS */
+
+    points.forEach(point => {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            point.x,
+            point.y,
+            4,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = "#00c8ff";
+
+        ctx.fill();
+
+    });
+
+
+    /* LABELS */
+
+    const labels = [
+        "MON",
+        "TUE",
+        "WED",
+        "THU",
+        "FRI",
+        "SAT",
+        "SUN",
+        "MON",
+        "TUE",
+        "WED"
+    ];
+
+
+    ctx.fillStyle = "#5f778c";
+
+    ctx.font = "9px Arial";
+
+    ctx.textAlign = "center";
+
+
+    labels.forEach(
+        (label, index) => {
+
+            const x =
+                padding +
+                (graphWidth /
+                (labels.length - 1)) *
+                index;
+
+            ctx.fillText(
+                label,
+                x,
+                height - 8
+            );
+
+        }
+    );
+
+}
+
+
+        drawThreatChart();
+
+
+        window.addEventListener(
+            "resize",
+            drawThreatChart
+        );
+    }
+}
+
+
+/* =====================================================
+   SECURITY SCANNER
+   ===================================================== */
+
+function startScan() {
+
+    const input =
+        document.getElementById("scanInput");
+
+    const progress =
+        document.getElementById("scanProgress");
+
+    const result =
+        document.getElementById("scanResult");
+
+    const progressFill =
+        document.getElementById("progressFill");
+
+    const percent =
+        document.getElementById("scanPercent");
+
+    const status =
+        document.getElementById("scanStatus");
+
+
+    if (!input.value.trim()) {
+
+        alert(
+            "Please enter a URL to scan."
+        );
+
+        input.focus();
+
+        return;
+    }
+
+
+    progress.classList.add("active");
+
+    result.classList.remove("show");
+
+
+    progressFill.style.width = "0%";
+
+
+    const checks = [
+
+        document.getElementById("check1"),
+
+        document.getElementById("check2"),
+
+        document.getElementById("check3"),
+
+        document.getElementById("check4")
+
+    ];
+
+
+    checks.forEach(check => {
+
+        check.classList.remove("done");
+
+        check.textContent =
+            "○ " +
+            check.textContent.substring(2);
+
+    });
+
+
+    let current = 0;
+
+
+    const scanSteps = [
+
+        "Checking URL structure...",
+
+        "Analyzing suspicious patterns...",
+
+        "Checking domain indicators...",
+
+        "Preparing risk assessment..."
+
+    ];
+
+
+    const interval =
+        setInterval(() => {
+
+            current += 5;
+
+
+            progressFill.style.width =
+                current + "%";
+
+
+            percent.textContent =
+                current + "%";
+
+
+            if (current < 25) {
+
+                status.textContent =
+                    scanSteps[0];
+
+            } else if (current < 50) {
+
+                status.textContent =
+                    scanSteps[1];
+
+                checks[0].classList.add("done");
+
+                checks[0].textContent =
+                    "✓ URL structure analysis";
+
+            } else if (current < 75) {
+
+                status.textContent =
+                    scanSteps[2];
+
+                checks[1].classList.add("done");
+
+                checks[1].textContent =
+                    "✓ Suspicious pattern check";
+
+            } else if (current < 100) {
+
+                status.textContent =
+                    scanSteps[3];
+
+                checks[2].classList.add("done");
+
+                checks[2].textContent =
+                    "✓ Domain indicator check";
+
+            }
+
+
+            if (current >= 100) {
+
+                clearInterval(interval);
+
+
+                checks[3].classList.add("done");
+
+                checks[3].textContent =
+                    "✓ Risk assessment";
+
+
+                status.textContent =
+                    "Scan completed";
+
+
+                setTimeout(() => {
+
+                    result.classList.add("show");
+
+                }, 300);
+
+            }
+
+
+        }, 100);
+
+}
+
+
+/* =====================================================
+   ENTER KEY FOR SCANNER
+   ===================================================== */
+
+document
+    .getElementById("scanInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                startScan();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
