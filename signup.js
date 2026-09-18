@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("📡 Connecting to backend...");
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/signup",
+                "https://cybershield-production-3c1a.up.railway.app/api/auth/signup",
                 {
                     method: "POST",
 
