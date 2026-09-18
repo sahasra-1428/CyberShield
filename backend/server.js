@@ -5,7 +5,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
 
-require("./db");
+const pool = require("./db");
 
 const app = express();
 
@@ -33,6 +33,28 @@ app.get("/api/test", (req, res) => {
         success: true,
         message: "CyberShield API connected successfully"
     });
+});
+
+
+// ================= DEBUG ROUTES =================
+
+app.get("/api/debug/users", async (req, res) => {
+    try {
+        const [users] = await pool.execute("SELECT name, email FROM users");
+
+        res.json({
+            success: true,
+            count: users.length,
+            users: users
+        });
+    } catch (error) {
+        console.error("❌ Debug users error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
 });
 
 
