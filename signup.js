@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             alert(
                 "❌ Cannot connect to backend.\n\n" +
-                "Make sure Node.js is running on port 5000."
+                "Please check your internet connection or try again."
             );
         }
     });
