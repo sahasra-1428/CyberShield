@@ -8,7 +8,7 @@ require("dotenv").config({
 
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
-require("./config/db");
+require("./db");
 
 const app = express();
 
