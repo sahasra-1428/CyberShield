@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/auth/login",
+                        "https://cybershield-production-3c1a.up.railway.app/api/auth/login",
                         {
 
                             method: "POST",
@@ -213,9 +213,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 message.innerHTML = `
                     ❌ Cannot connect to backend.
-                    <br>
-                    Make sure the server is running
-                    on port 5000.
+                    
+    <br>
+    Please check your internet connection or try again.
+`;
                 `;
 
             }
