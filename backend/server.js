@@ -1,22 +1,22 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
-
-require("dotenv").config({
-    path: path.join(__dirname, ".env")
-});
+require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
+
 require("./db");
 
 const app = express();
 
+
+// ================= MIDDLEWARE =================
+
 app.use(cors());
 app.use(express.json());
-const aiRoutes = require("./routes/ai");
 
-app.use("/api/ai", aiRoutes);
+
+// ================= HOME =================
 
 app.get("/", (req, res) => {
     res.json({
@@ -25,6 +25,9 @@ app.get("/", (req, res) => {
     });
 });
 
+
+// ================= API TEST =================
+
 app.get("/api/test", (req, res) => {
     res.json({
         success: true,
@@ -32,11 +35,21 @@ app.get("/api/test", (req, res) => {
     });
 });
 
+
+// ================= AUTH ROUTES =================
+
 app.use("/api/auth", authRoutes);
+
+
+// ================= COMPLAINT ROUTES =================
+
 app.use("/api/complaints", complaintRoutes);
+
+
+// ================= SERVER =================
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 });
