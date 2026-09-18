@@ -44,31 +44,184 @@ exports.createComplaint = async (req, res) => {
         });
     }
 };
-const express = require("express");
 
-const router = express.Router();
 
-const {
-    createComplaint,
-    getComplaints,
-    getComplaintById,
-    updateComplaint,
-    deleteComplaint
-} = require("../complaintController");
+// ================= GET USER COMPLAINTS =================
 
-// Create complaint
-router.post("/", createComplaint);
+exports.getComplaints = async (req, res) => {
+    try {
 
-// Get all complaints of logged-in user
-router.get("/", getComplaints);
+        const [complaints] = await pool.execute(
+            `SELECT
+                id,
+                title,
+                description,
+                category,
+                status,
+                createdAt,
+                updatedAt
+             FROM complaints
+             WHERE userId = ?
+             ORDER BY createdAt DESC`,
+            [req.user.id]
+        );
 
-// Get single complaint
-router.get("/:id", getComplaintById);
+        res.json({
+            success: true,
+            complaints
+        });
 
-// Update complaint
-router.put("/:id", updateComplaint);
+    } catch (error) {
 
-// Delete complaint
-router.delete("/:id", deleteComplaint);
+        console.error("Get complaints error:", error);
 
-module.exports = router;
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch complaints"
+        });
+    }
+};
+
+
+// ================= GET SINGLE COMPLAINT =================
+
+exports.getComplaintById = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const [complaints] = await pool.execute(
+            `SELECT
+                id,
+                title,
+                description,
+                category,
+                status,
+                createdAt,
+                updatedAt
+             FROM complaints
+             WHERE id = ?
+             AND userId = ?`,
+            [
+                id,
+                req.user.id
+            ]
+        );
+
+        if (complaints.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Complaint not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            complaint: complaints[0]
+        });
+
+    } catch (error) {
+
+        console.error("Get complaint error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch complaint"
+        });
+    }
+};
+
+
+// ================= UPDATE COMPLAINT =================
+
+exports.updateComplaint = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const {
+            title,
+            description,
+            category
+        } = req.body;
+
+        const [result] = await pool.execute(
+            `UPDATE complaints
+             SET
+                title = ?,
+                description = ?,
+                category = ?
+             WHERE id = ?
+             AND userId = ?`,
+            [
+                title,
+                description,
+                category,
+                id,
+                req.user.id
+            ]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Complaint not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Complaint updated successfully"
+        });
+
+    } catch (error) {
+
+        console.error("Update complaint error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to update complaint"
+        });
+    }
+};
+
+
+// ================= DELETE COMPLAINT =================
+
+exports.deleteComplaint = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const [result] = await pool.execute(
+            `DELETE FROM complaints
+             WHERE id = ?
+             AND userId = ?`,
+            [
+                id,
+                req.user.id
+            ]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "Complaint not found"
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Complaint deleted successfully"
+        });
+
+    } catch (error) {
+
+        console.error("Delete complaint error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to delete complaint"
+        });
+    }
+};
