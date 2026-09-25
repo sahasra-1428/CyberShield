@@ -217,7 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <br>
     Please check your internet connection or try again.
 `;
-                `;
 
             }
 
