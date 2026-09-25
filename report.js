@@ -3,7 +3,7 @@ const API_URL =
 
 
 // =====================================================
-// REPORT FORM
+// GET HTML ELEMENTS
 // =====================================================
 
 const reportForm = document.getElementById("reportForm");
@@ -11,18 +11,26 @@ const reportMessage = document.getElementById("reportMessage");
 const submitReportBtn = document.getElementById("submitReportBtn");
 
 
+// =====================================================
+// REPORT FORM
+// =====================================================
+
 if (reportForm) {
 
     reportForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
+        console.log("📝 Report form submitted");
+
 
         // =================================================
-        // GET LOGIN TOKEN
+        // CHECK LOGIN
         // =================================================
 
         const token = localStorage.getItem("token");
+
+        console.log("🔑 Token exists:", !!token);
 
         if (!token) {
 
@@ -44,29 +52,34 @@ if (reportForm) {
         // =================================================
 
         const incidentType =
-            document.getElementById("incidentType").value.trim();
+            document.getElementById("incidentType")?.value.trim();
 
         const name =
-            document.getElementById("name").value.trim();
+            document.getElementById("name")?.value.trim();
 
         const email =
-            document.getElementById("email").value.trim();
+            document.getElementById("email")?.value.trim();
 
         const suspiciousUrl =
-            document.getElementById("suspiciousUrl").value.trim();
+            document.getElementById("suspiciousUrl")?.value.trim();
 
         const description =
-            document.getElementById("description").value.trim();
+            document.getElementById("description")?.value.trim();
+
+
+        console.log("📋 Form values received");
 
 
         // =================================================
         // VALIDATION
         // =================================================
 
-        if (!incidentType ||
+        if (
+            !incidentType ||
             !name ||
             !email ||
-            !description) {
+            !description
+        ) {
 
             reportMessage.textContent =
                 "Please fill all required fields.";
@@ -78,7 +91,7 @@ if (reportForm) {
 
 
         // =================================================
-        // DISABLE BUTTON
+        // BUTTON
         // =================================================
 
         if (submitReportBtn) {
@@ -91,10 +104,16 @@ if (reportForm) {
 
 
         // =================================================
-        // SEND REPORT TO BACKEND
+        // SEND TO RAILWAY
         // =================================================
 
         try {
+
+            console.log(
+                "🌐 Sending request to:",
+                API_URL + "/api/complaints"
+            );
+
 
             const response = await fetch(
                 API_URL + "/api/complaints",
@@ -129,11 +148,47 @@ if (reportForm) {
             );
 
 
+            console.log(
+                "📡 Server response status:",
+                response.status
+            );
+
+
             // =================================================
-            // READ RESPONSE
+            // READ RESPONSE SAFELY
             // =================================================
 
-            const data = await response.json();
+            const responseText =
+                await response.text();
+
+            console.log(
+                "📨 Server response:",
+                responseText
+            );
+
+
+            let data = {};
+
+            try {
+
+                data = responseText
+                    ? JSON.parse(responseText)
+                    : {};
+
+            } catch (jsonError) {
+
+                console.error(
+                    "❌ Response is not JSON:",
+                    responseText
+                );
+
+                reportMessage.textContent =
+                    "Server returned an invalid response.";
+
+                reportMessage.style.color = "red";
+
+                return;
+            }
 
 
             // =================================================
@@ -143,9 +198,44 @@ if (reportForm) {
             if (!response.ok) {
 
                 console.error(
-                    "Backend error:",
+                    "❌ Backend returned error:",
                     data
                 );
+
+
+                if (response.status === 401) {
+
+                    reportMessage.textContent =
+                        "Your login session has expired. Please login again.";
+
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 1500);
+
+                    return;
+                }
+
+
+                if (response.status === 404) {
+
+                    reportMessage.textContent =
+                        "Report API route not found.";
+
+                    return;
+                }
+
+
+                if (response.status === 500) {
+
+                    reportMessage.textContent =
+                        "Server error. Please check the Railway backend.";
+
+                    return;
+                }
+
 
                 reportMessage.textContent =
                     data.message ||
@@ -162,6 +252,11 @@ if (reportForm) {
             // =================================================
 
             if (data.success) {
+
+                console.log(
+                    "✅ Report submitted successfully"
+                );
+
 
                 reportMessage.textContent =
                     "✅ Report submitted successfully! " +
@@ -188,19 +283,41 @@ if (reportForm) {
         } catch (error) {
 
             console.error(
-                "❌ Report submission error:",
+                "❌ FETCH ERROR:",
                 error
             );
 
+
             reportMessage.textContent =
-                "❌ Unable to connect to server.";
+                "❌ Unable to reach the server.";
 
             reportMessage.style.color = "red";
+
+
+            console.log(
+                "Possible causes:"
+            );
+
+            console.log(
+                "1. CORS problem"
+            );
+
+            console.log(
+                "2. Railway backend unavailable"
+            );
+
+            console.log(
+                "3. Incorrect API URL"
+            );
+
+            console.log(
+                "4. Network problem"
+            );
 
         } finally {
 
             // =================================================
-            // ENABLE BUTTON AGAIN
+            // ENABLE BUTTON
             // =================================================
 
             if (submitReportBtn) {
