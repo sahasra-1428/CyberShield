@@ -9,41 +9,15 @@ require("./db");
 
 const app = express();
 
-
-// =====================================================
-// CORS
-// =====================================================
-
 app.use(
     cors({
-        origin: [
-            "https://cyber-shield-gamma-nine.vercel.app"
-        ],
-        methods: [
-            "GET",
-            "POST",
-            "PUT",
-            "DELETE",
-            "OPTIONS"
-        ],
-        allowedHeaders: [
-            "Content-Type",
-            "Authorization"
-        ]
+        origin: "https://cyber-shield-gamma-nine.vercel.app",
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"]
     })
 );
 
-
-// =====================================================
-// JSON BODY
-// =====================================================
-
 app.use(express.json());
-
-
-// =====================================================
-// HOME
-// =====================================================
 
 app.get("/", (req, res) => {
     res.json({
@@ -52,11 +26,6 @@ app.get("/", (req, res) => {
     });
 });
 
-
-// =====================================================
-// TEST API
-// =====================================================
-
 app.get("/api/test", (req, res) => {
     res.json({
         success: true,
@@ -64,24 +33,9 @@ app.get("/api/test", (req, res) => {
     });
 });
 
-
-// =====================================================
-// AUTH ROUTES
-// =====================================================
-
 app.use("/api/auth", authRoutes);
 
-
-// =====================================================
-// COMPLAINT / REPORT ROUTES
-// =====================================================
-
 app.use("/api/complaints", complaintRoutes);
-
-
-// =====================================================
-// 404
-// =====================================================
 
 app.use((req, res) => {
     res.status(404).json({
@@ -89,11 +43,6 @@ app.use((req, res) => {
         message: "API route not found"
     });
 });
-
-
-// =====================================================
-// ERROR HANDLER
-// =====================================================
 
 app.use((err, req, res, next) => {
     console.error("❌ Server error:", err);
@@ -104,15 +53,8 @@ app.use((err, req, res, next) => {
     });
 });
 
-
-// =====================================================
-// START SERVER
-// =====================================================
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(
-        `🚀 CyberShield Backend running on port ${PORT}`
-    );
+    console.log(`🚀 CyberShield Backend running on port ${PORT}`);
 });
