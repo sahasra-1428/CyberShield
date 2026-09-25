@@ -3943,3 +3943,164 @@ body:has(.dashboard-container) {
         font-size: 12px;
     }
 }
+/* =====================================================
+   SECURITY ACTIVITIES
+   ===================================================== */
+
+.security-activities {
+    margin-top: 35px;
+    margin-bottom: 40px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    font-size: 26px;
+    margin-bottom: 6px;
+    color: #102a43;
+}
+
+.section-heading p {
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* GRID */
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+
+/* CARD */
+
+.activity-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.activity-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 30px rgba(15, 23, 42, 0.13);
+}
+
+
+/* ICON */
+
+.activity-icon {
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 28px;
+
+    margin-bottom: 18px;
+}
+
+
+.quiz-icon {
+    background: #e8f1ff;
+}
+
+
+.help-icon {
+    background: #eaf8ef;
+}
+
+
+.scan-icon {
+    background: #f0ecff;
+}
+
+
+/* TEXT */
+
+.activity-card h3 {
+
+    font-size: 20px;
+
+    color: #102a43;
+
+    margin-bottom: 10px;
+}
+
+
+.activity-card p {
+
+    color: #64748b;
+
+    line-height: 1.6;
+
+    min-height: 70px;
+
+    margin-bottom: 20px;
+}
+
+
+/* BUTTON */
+
+.activity-card button {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 12px 18px;
+
+    border-radius: 9px;
+
+    background: #123c69;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+
+.activity-card button:hover {
+
+    background: #0b2c4d;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .activity-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
