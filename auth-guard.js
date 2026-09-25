@@ -1,15 +1,8 @@
-// ==========================================
-// CYBERSHIELD AUTHENTICATION GUARD
-// ==========================================
+(function requireLogin() {
+    const token = localStorage.getItem("cybershieldToken");
+    const user = localStorage.getItem("cybershieldUser");
 
-(function () {
-
-    const token = localStorage.getItem("token");
-
-    // No token = not logged in
-    if (!token) {
-        window.location.href = "login.html";
-        return;
+    if (!token || !user) {
+        window.location.replace("login.html");
     }
-
 })();
