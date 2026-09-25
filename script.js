@@ -711,6 +711,7 @@ function setupForms() {
 
                 if (success) {
                     success.classList.remove("hidden");
+                    success.style.display = "block";
                 }
 
                 if (reportId && data.complaintId) {
@@ -719,6 +720,7 @@ function setupForms() {
 
                 reportForm.style.display = "none";
                 reportForm.reset();
+                showMessage("Report submitted successfully.", "success");
             } catch (error) {
                 showMessage(error.message, "error");
             }
