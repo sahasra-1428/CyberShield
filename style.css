@@ -79,7 +79,7 @@ body {
 }
 
 .logo-text span {
-    color: #8c9aad;
+    color: #b8c2d1;
 }
 
 
@@ -92,7 +92,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #9ca8ba;
+    color: #b8c2d1;
     font-size: 17px;
     transition: 0.3s;
 }
@@ -219,7 +219,7 @@ body {
 .hero-description {
     max-width: 850px;
 
-    color: #9aa8bb;
+    color: #b8c2d1;
 
     font-size: 20px;
 
@@ -345,7 +345,7 @@ body {
 }
 
 .section-heading p {
-    color: #8997aa;
+    color: #b8c2d1;
 
     font-size: 17px;
 }
@@ -424,7 +424,7 @@ body {
 }
 
 .feature-card p {
-    color: #8e9caf;
+    color: #b8c2d1;
 
     font-size: 17px;
 
@@ -495,7 +495,7 @@ body {
 }
 
 .alert-box p {
-    color: #919dae;
+    color: #b8c2d1;
 }
 
 
@@ -540,7 +540,7 @@ body {
 }
 
 .threat-item p {
-    color: #8997aa;
+    color: #b8c2d1;
 }
 
 
@@ -580,7 +580,7 @@ body {
 }
 
 .cta-content p {
-    color: #8e9caf;
+    color: #b8c2d1;
 
     margin-bottom: 30px;
 }
@@ -609,7 +609,7 @@ footer {
 }
 
 footer > p {
-    color: #758297;
+    color: #b8c2d1;
 }
 
 .footer-links {
@@ -623,7 +623,7 @@ footer > p {
 }
 
 .footer-links a {
-    color: #8e9caf;
+    color: #b8c2d1;
 
     text-decoration: none;
 }
@@ -886,7 +886,7 @@ body {
 .scan-header p,
 .report-header p,
 .awareness-hero p {
-    color: #8997aa;
+    color: #b8c2d1;
     font-size: 18px;
 }
 
@@ -910,7 +910,7 @@ body {
     border: 0;
     border-radius: 11px;
     background: transparent;
-    color: #8997aa;
+    color: #b8c2d1;
     font-size: 16px;
     cursor: pointer;
 }
@@ -941,7 +941,7 @@ body {
 }
 
 .detector-box p {
-    color: #8997aa;
+    color: #b8c2d1;
     margin-bottom: 25px;
 }
 
@@ -1001,7 +1001,7 @@ body {
 }
 
 #resultMessage {
-    color: #8997aa;
+    color: #b8c2d1;
 }
 
 
@@ -1019,7 +1019,7 @@ body {
 }
 
 .safety-notice p {
-    color: #8997aa;
+    color: #b8c2d1;
 }
 
 
@@ -1057,7 +1057,7 @@ body {
 }
 
 .scan-option small {
-    color: #8997aa;
+    color: #b8c2d1;
     margin-top: 5px;
 }
 
@@ -1152,7 +1152,7 @@ body {
 
 .score-circle small {
     font-size: 14px;
-    color: #8997aa;
+    color: #b8c2d1;
 }
 
 .safe-label {
@@ -1207,7 +1207,7 @@ body {
 }
 
 .awareness-card p {
-    color: #8997aa;
+    color: #b8c2d1;
 }
 
 .awareness-card button {
@@ -1256,7 +1256,7 @@ body {
 }
 
 .tips-list p {
-    color: #b0bac8;
+    color: #b8c2d1;
 }
 
 
@@ -1283,7 +1283,7 @@ body {
 
 .modal-content p {
     margin-top: 15px;
-    color: #9aa8bb;
+    color: #b8c2d1;
 }
 
 .close-modal {
@@ -1357,7 +1357,7 @@ body {
     text-align: center;
     border: 1px dashed rgba(0,210,255,0.3);
     border-radius: 12px;
-    color: #8997aa;
+    color: #b8c2d1;
 }
 
 .upload-box input {
@@ -1376,7 +1376,7 @@ body {
 }
 
 .report-info > p {
-    color: #8997aa;
+    color: #b8c2d1;
     margin-bottom: 30px;
 }
 
@@ -1392,7 +1392,7 @@ body {
 }
 
 .report-step p {
-    color: #8997aa;
+    color: #b8c2d1;
     font-size: 14px;
 }
 
@@ -1407,7 +1407,7 @@ body {
 }
 
 .report-warning p {
-    color: #a3adbb;
+    color: #b8c2d1;
     font-size: 14px;
 }
 
@@ -1430,7 +1430,7 @@ body {
 }
 
 .report-success p {
-    color: #8997aa;
+    color: #b8c2d1;
 }
 
 
