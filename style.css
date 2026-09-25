@@ -3580,3 +3580,366 @@ body {
     max-width: 500px;
     margin: 25px auto;
 }
+/* =========================================================
+   CYBERSHIELD USER DASHBOARD - FINAL DARK THEME
+   ========================================================= */
+
+.dashboard-page,
+body:has(.dashboard-container) {
+    background:
+        radial-gradient(circle at top right, rgba(0, 210, 255, 0.08), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.08), transparent 30%),
+        #030b18 !important;
+    color: #f8fafc !important;
+    min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
+
+.dashboard-navbar {
+    min-height: 76px;
+    padding: 0 6%;
+    background: rgba(3, 11, 24, 0.94) !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    backdrop-filter: blur(16px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-logo {
+    color: #ffffff !important;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.dashboard-navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.dashboard-navbar nav a {
+    color: #b8c7d9 !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.dashboard-navbar nav a:hover {
+    color: #22d3ee !important;
+}
+
+.dashboard-navbar button {
+    padding: 10px 20px;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    border-radius: 10px;
+    background: rgba(34, 211, 238, 0.08);
+    color: #22d3ee !important;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.dashboard-navbar button:hover {
+    background: #22d3ee;
+    color: #00121c !important;
+    transform: translateY(-2px);
+}
+
+/* ================= MAIN CONTAINER ================= */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+    padding: 70px 6%;
+}
+
+/* ================= WELCOME ================= */
+
+.dashboard-welcome {
+    margin-bottom: 35px;
+}
+
+.dashboard-label {
+    display: block;
+    color: #22d3ee !important;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.dashboard-welcome h1 {
+    color: #f8fafc !important;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.15;
+    margin: 12px 0;
+}
+
+.dashboard-welcome p {
+    color: #8da0b4 !important;
+    font-size: 16px;
+}
+
+/* ================= CARDS ================= */
+
+.dashboard-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(9, 25, 42, 0.98),
+            rgba(5, 17, 30, 0.98)
+        ) !important;
+
+    border: 1px solid rgba(148, 163, 184, 0.13) !important;
+    border-radius: 20px !important;
+
+    padding: 30px !important;
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22),
+        inset 0 0 25px rgba(34, 211, 238, 0.015);
+
+    transition: 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(34, 211, 238, 0.28) !important;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(34, 211, 238, 0.06);
+}
+
+/* Card headings */
+
+.dashboard-card h2,
+.dashboard-card h3 {
+    color: #f1f5f9 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.dashboard-card h3 {
+    font-size: 19px !important;
+    margin: 0 0 12px !important;
+}
+
+/* Card paragraphs */
+
+.dashboard-card p {
+    color: #91a2b5 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+}
+
+/* Card links */
+
+.dashboard-card a {
+    color: #22d3ee !important;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.dashboard-card a:hover {
+    color: #67e8f9 !important;
+}
+
+/* ================= ACCOUNT INFORMATION ================= */
+
+.user-info {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px !important;
+}
+
+.user-info div {
+    padding: 18px;
+    border-radius: 14px;
+    background: rgba(15, 34, 52, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.user-info strong {
+    display: block;
+    color: #71849a !important;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+
+.user-info span,
+.user-info p {
+    color: #f1f5f9 !important;
+}
+
+/* ================= SECURITY SCORE ================= */
+
+.security-banner {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at right,
+            rgba(34, 211, 238, 0.12),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #071b2d,
+            #06111e
+        ) !important;
+
+    border: 1px solid rgba(34, 211, 238, 0.18);
+    border-radius: 20px !important;
+
+    color: white !important;
+    padding: 30px !important;
+    margin-top: 25px;
+}
+
+.security-banner > div {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.security-banner span {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+
+    font-size: 34px;
+}
+
+.security-banner h2,
+.security-banner h3 {
+    color: #f8fafc !important;
+}
+
+.security-banner p {
+    color: #91a2b5 !important;
+}
+
+/* ================= SECURITY SCORE NUMBER ================= */
+
+.security-score {
+    color: #22d3ee !important;
+    font-size: 38px;
+    font-weight: 800;
+}
+
+/* ================= TOOL GRID ================= */
+
+.dashboard-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px !important;
+}
+
+.dashboard-grid .dashboard-card {
+    min-height: 230px !important;
+}
+
+/* ================= ICONS ================= */
+
+.dashboard-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.12);
+
+    font-size: 28px !important;
+
+    margin-bottom: 20px;
+}
+
+/* ================= SECTION TITLES ================= */
+
+.dashboard-container > h2,
+.dashboard-container h2 {
+    color: #f8fafc !important;
+}
+
+.dashboard-container > p {
+    color: #8193a7 !important;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+
+    .dashboard-navbar {
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dashboard-navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .dashboard-container {
+        padding: 45px 5%;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .user-info {
+        grid-template-columns: 1fr !important;
+    }
+
+    .security-banner > div {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .dashboard-welcome h1 {
+        font-size: 32px;
+    }
+
+    .dashboard-card {
+        padding: 22px !important;
+    }
+
+    .dashboard-navbar nav a {
+        font-size: 12px;
+    }
+}
