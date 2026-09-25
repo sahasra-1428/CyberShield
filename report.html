@@ -5,50 +5,49 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Report Incident | CSP</title>
-     <script src="auth-guard.js"></script>
+    <title>Report a Cyber Incident | CyberShield</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- LOGIN PROTECTION -->
+    <script src="js/auth-guard.js"></script>
 
 </head>
 
 <body>
 
+    <!-- ========================= -->
+    <!-- NAVBAR -->
+    <!-- ========================= -->
+
     <nav class="navbar">
 
         <div class="logo">
-
-            <div class="logo-icon">
-                🛡️
-            </div>
-
-            <div class="logo-text">
-                <strong>CSP</strong>
-                <span> · Cyber Scam Protection</span>
-            </div>
-
+            🛡️ CyberShield
         </div>
-
 
         <div class="nav-links">
 
-            <a href="index.html">
-                Home
+            <a href="user-dashboard.html">
+                Dashboard
             </a>
 
-            <a href="detector.html">
-                Detector
+            <a href="url-checker.html">
+                URL Checker
+            </a>
+
+            <a href="scam-detector.html">
+                Scam Detector
             </a>
 
             <a href="awareness.html">
                 Awareness
             </a>
 
-            <a href="report.html">
+            <a href="report.html" class="active">
                 Report
             </a>
 
@@ -57,16 +56,16 @@
     </nav>
 
 
-    <main class="report-page">
+    <!-- ========================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================= -->
 
-        <div class="report-header">
+    <main class="report-container">
 
-            <span class="page-label">
-                SECURE REPORTING
-            </span>
+        <section class="report-header">
 
             <h1>
-                Report a Cyber Incident
+                🚨 Report a Cyber Incident
             </h1>
 
             <p>
@@ -74,282 +73,260 @@
                 an incident report.
             </p>
 
-        </div>
+        </section>
 
 
-        <div class="report-layout">
+        <!-- ========================= -->
+        <!-- REPORT FORM -->
+        <!-- ========================= -->
 
+        <form id="reportForm">
 
-            <!-- FORM -->
+            <!-- INCIDENT TYPE -->
 
-            <div class="report-card">
+            <div class="form-group">
 
-                <form id="reportForm">
+                <label for="incidentType">
+                    Incident Type
+                </label>
 
-                    <div class="form-group">
+                <select id="incidentType" required>
 
-                        <label>
-                            Incident Type
-                        </label>
+                    <option value="">
+                        Select incident type
+                    </option>
 
-                        <select id="crimeType" required>
+                    <option value="Phishing">
+                        Phishing
+                    </option>
 
-                            <option value="">
-                                Select incident type
-                            </option>
+                    <option value="Fake Website">
+                        Fake Website
+                    </option>
 
-                            <option>
-                                Phishing
-                            </option>
+                    <option value="Financial Scam">
+                        Financial Scam
+                    </option>
 
-                            <option>
-                                Fake Website
-                            </option>
+                    <option value="Identity Theft">
+                        Identity Theft
+                    </option>
 
-                            <option>
-                                Financial Scam
-                            </option>
+                    <option value="Social Engineering">
+                        Social Engineering
+                    </option>
 
-                            <option>
-                                Identity Theft
-                            </option>
+                    <option value="Cyber Bullying">
+                        Cyber Bullying
+                    </option>
 
-                            <option>
-                                Social Engineering
-                            </option>
+                    <option value="Other">
+                        Other
+                    </option>
 
-                            <option>
-                                Cyber Bullying
-                            </option>
-
-                            <option>
-                                Other
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-row">
-
-                        <div class="form-group">
-
-                            <label>
-                                Your Name
-                            </label>
-
-                            <input
-                                type="text"
-                                id="name"
-                                placeholder="Enter your name"
-                                required>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label>
-                                Email
-                            </label>
-
-                            <input
-                                type="email"
-                                id="email"
-                                placeholder="you@example.com"
-                                required>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Suspicious URL
-                        </label>
-
-                        <input
-                            type="url"
-                            id="suspiciousUrl"
-                            placeholder="https://example.com">
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Incident Description
-                        </label>
-
-                        <textarea
-                            id="description"
-                            placeholder="Describe what happened..."
-                            required>
-                        </textarea>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Evidence
-                        </label>
-
-                        <div class="upload-box">
-
-                            📎
-
-                            <p>
-                                Upload a screenshot or supporting file
-                            </p>
-
-                            <input
-                                type="file"
-                                accept="image/*,.pdf">
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="primary-btn report-button">
-
-                        🚨 Submit Secure Report
-
-                    </button>
-
-                </form>
+                </select>
 
             </div>
 
 
-            <!-- INFORMATION -->
+            <!-- NAME -->
 
-            <aside class="report-info">
+            <div class="form-group">
 
-                <h2>
-                    Why report?
-                </h2>
+                <label for="name">
+                    Your Name
+                </label>
 
-                <p>
-                    Your report can help identify common scam
-                    patterns and improve awareness.
-                </p>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
 
-
-                <div class="report-step">
-
-                    <span>
-                        01
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Submit
-                        </h3>
-
-                        <p>
-                            Provide details about the incident.
-                        </p>
-
-                    </div>
-
-                </div>
+            </div>
 
 
-                <div class="report-step">
+            <!-- EMAIL -->
 
-                    <span>
-                        02
-                    </span>
+            <div class="form-group">
 
-                    <div>
+                <label for="email">
+                    Email
+                </label>
 
-                        <h3>
-                            Review
-                        </h3>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
 
-                        <p>
-                            The submitted information can be
-                            reviewed by authorized administrators.
-                        </p>
-
-                    </div>
-
-                </div>
+            </div>
 
 
-                <div class="report-step">
+            <!-- URL -->
 
-                    <span>
-                        03
-                    </span>
+            <div class="form-group">
 
-                    <div>
+                <label for="suspiciousUrl">
+                    Suspicious URL
+                </label>
 
-                        <h3>
-                            Track
-                        </h3>
+                <input
+                    type="url"
+                    id="suspiciousUrl"
+                    placeholder="https://example.com"
+                >
 
-                        <p>
-                            Your report can receive a tracking
-                            identifier and status.
-                        </p>
-
-                    </div>
-
-                </div>
+            </div>
 
 
-                <div class="report-warning">
+            <!-- DESCRIPTION -->
 
-                    ⚠️
+            <div class="form-group">
+
+                <label for="description">
+                    Incident Description
+                </label>
+
+                <textarea
+                    id="description"
+                    rows="6"
+                    placeholder="Describe what happened..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- EVIDENCE -->
+
+            <div class="form-group">
+
+                <label for="evidence">
+                    Evidence
+                </label>
+
+                <input
+                    type="file"
+                    id="evidence"
+                    accept="image/*,.pdf"
+                >
+
+                <small>
+                    📎 Upload a screenshot or supporting file.
+                </small>
+
+            </div>
+
+
+            <!-- SUBMIT BUTTON -->
+
+            <button
+                type="submit"
+                id="submitReportBtn">
+
+                🚨 Submit Secure Report
+
+            </button>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="reportMessage"
+                class="report-message">
+            </div>
+
+        </form>
+
+
+        <!-- ========================= -->
+        <!-- WHY REPORT -->
+        <!-- ========================= -->
+
+        <section class="why-report">
+
+            <h2>
+                Why report?
+            </h2>
+
+            <p>
+                Your report can help identify common scam patterns
+                and improve cyber awareness.
+            </p>
+
+
+            <div class="report-steps">
+
+                <div class="step">
+
+                    <span>01</span>
+
+                    <h3>
+                        Submit
+                    </h3>
 
                     <p>
-                        Do not include passwords, OTPs,
-                        bank PINs or other secret credentials
-                        in your report.
+                        Provide details about the incident.
                     </p>
 
                 </div>
 
-            </aside>
 
-        </div>
+                <div class="step">
+
+                    <span>02</span>
+
+                    <h3>
+                        Review
+                    </h3>
+
+                    <p>
+                        The submitted information can be reviewed
+                        by authorized administrators.
+                    </p>
+
+                </div>
 
 
-        <!-- SUCCESS -->
+                <div class="step">
 
-        <div
-            id="reportSuccess"
-            class="report-success hidden">
+                    <span>03</span>
 
-            <div>
-                ✓
+                    <h3>
+                        Track
+                    </h3>
+
+                    <p>
+                        Your report can receive a tracking
+                        identifier and status.
+                    </p>
+
+                </div>
+
             </div>
 
-            <h2>
-                Report Submitted
-            </h2>
+        </section>
 
-            <p>
-                Your report has been recorded successfully.
-            </p>
 
-            <strong id="reportId">
-                CSP-2026-00001
+        <!-- ========================= -->
+        <!-- SAFETY WARNING -->
+        <!-- ========================= -->
+
+        <div class="security-warning">
+
+            ⚠️
+
+            <strong>
+                Safety Notice
             </strong>
 
             <p>
-                Keep this ID for future reference.
+                Do not include passwords, OTPs, bank PINs,
+                card CVVs, or other secret credentials
+                in your report.
             </p>
 
         </div>
@@ -357,7 +334,11 @@
     </main>
 
 
-    <script src="script.js"></script>
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
+
+    <script src="js/report.js"></script>
 
 </body>
 
