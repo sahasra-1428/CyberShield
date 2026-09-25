@@ -4104,3 +4104,133 @@ body:has(.dashboard-container) {
     }
 
 }
+/* =========================================
+   CYBER SAFETY QUIZ
+========================================= */
+
+.question-card {
+    background: #ffffff;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid #dce5ef;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.question-card h3 {
+    color: #0b1f3a;
+    margin-bottom: 18px;
+}
+
+
+/* QUIZ OPTIONS */
+
+.option {
+    display: flex !important;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 15px !important;
+    margin: 10px 0 !important;
+
+    background: #f8fbff !important;
+
+    border: 2px solid #cbd8e6 !important;
+    border-radius: 10px !important;
+
+    color: #172b4d !important;
+
+    font-size: 16px !important;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* RADIO BUTTON */
+
+.option input[type="radio"] {
+    display: inline-block !important;
+
+    width: 18px !important;
+    height: 18px !important;
+
+    margin-right: 12px !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    accent-color: #0b5ed7;
+
+    cursor: pointer;
+}
+
+
+/* HOVER */
+
+.option:hover {
+    background: #eaf4ff !important;
+
+    border-color: #0b5ed7 !important;
+}
+
+
+/* SELECTED OPTION */
+
+.option:has(input[type="radio"]:checked) {
+    background: #e8f2ff !important;
+
+    border-color: #0b5ed7 !important;
+
+    color: #0b1f3a !important;
+}
+
+
+/* QUIZ SUBMIT BUTTON */
+
+.submit-btn {
+    display: block;
+
+    width: 200px;
+
+    margin: 30px auto;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #0b5ed7;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #084298;
+}
+
+
+/* QUIZ RESULT */
+
+#result {
+    text-align: center;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color: #0b1f3a;
+
+    margin: 25px;
+}
