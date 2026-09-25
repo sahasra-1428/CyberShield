@@ -1,9 +1,8 @@
 const express = require("express");
 
-const pool = require("./db");
+const router = express.Router();
 
-// CREATE
-exports.createComplaint = async (req, res) => {
+const authMiddleware = require("../authMiddleware");
 
 const {
     createComplaint,
@@ -13,40 +12,35 @@ const {
     deleteComplaint
 } = require("../complaintController");
 
-// ================= CREATE COMPLAINT =================
-
+// CREATE COMPLAINT
 router.post(
     "/",
     authMiddleware,
     createComplaint
 );
 
-// ================= GET USER COMPLAINTS =================
-
+// GET USER COMPLAINTS
 router.get(
     "/",
     authMiddleware,
     getComplaints
 );
 
-// ================= GET SINGLE COMPLAINT =================
-
+// GET SINGLE COMPLAINT
 router.get(
     "/:id",
     authMiddleware,
     getComplaintById
 );
 
-// ================= UPDATE COMPLAINT =================
-
+// UPDATE COMPLAINT
 router.put(
     "/:id",
     authMiddleware,
     updateComplaint
 );
 
-// ================= DELETE COMPLAINT =================
-
+// DELETE COMPLAINT
 router.delete(
     "/:id",
     authMiddleware,
