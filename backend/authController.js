@@ -5,7 +5,9 @@ const jwt = require("jsonwebtoken");
 // ================= SIGNUP =================
 
 exports.signup = async (req, res) => {
+
     try {
+
         console.log("📥 Signup request received");
         console.log("Body:", req.body);
 
@@ -16,15 +18,18 @@ exports.signup = async (req, res) => {
             confirmPassword
         } = req.body;
 
-        // Check fields
-        if (!name || !email || !password || !confirmPassword) {
+        if (
+            !name ||
+            !email ||
+            !password ||
+            !confirmPassword
+        ) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required"
             });
         }
 
-        // Check password
         if (password !== confirmPassword) {
             return res.status(400).json({
                 success: false,
@@ -32,7 +37,6 @@ exports.signup = async (req, res) => {
             });
         }
 
-        // Check existing email
         const [existingUser] = await pool.execute(
             "SELECT id FROM users WHERE email = ?",
             [email]
@@ -45,10 +49,9 @@ exports.signup = async (req, res) => {
             });
         }
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword =
+            await bcrypt.hash(password, 10);
 
-        // Insert user
         const [result] = await pool.execute(
             `INSERT INTO users
             (name, email, password, role)
@@ -60,7 +63,10 @@ exports.signup = async (req, res) => {
             ]
         );
 
-        console.log("✅ User created. ID:", result.insertId);
+        console.log(
+            "✅ User created. ID:",
+            result.insertId
+        );
 
         return res.status(201).json({
             success: true,
@@ -70,7 +76,10 @@ exports.signup = async (req, res) => {
 
     } catch (error) {
 
-        console.error("❌ Signup error:", error);
+        console.error(
+            "❌ Signup error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
@@ -79,18 +88,23 @@ exports.signup = async (req, res) => {
     }
 };
 
-
 // ================= LOGIN =================
 
 exports.login = async (req, res) => {
+
     try {
 
-        const { email, password } = req.body;
+        const {
+            email,
+            password
+        } = req.body;
 
         if (!email || !password) {
+
             return res.status(400).json({
                 success: false,
-                message: "Email and password are required"
+                message:
+                    "Email and password are required"
             });
         }
 
@@ -100,23 +114,28 @@ exports.login = async (req, res) => {
         );
 
         if (users.length === 0) {
+
             return res.status(401).json({
                 success: false,
-                message: "Invalid email or password"
+                message:
+                    "Invalid email or password"
             });
         }
 
         const user = users[0];
 
-        const passwordMatch = await bcrypt.compare(
-            password,
-            user.password
-        );
+        const passwordMatch =
+            await bcrypt.compare(
+                password,
+                user.password
+            );
 
         if (!passwordMatch) {
+
             return res.status(401).json({
                 success: false,
-                message: "Invalid email or password"
+                message:
+                    "Invalid email or password"
             });
         }
 
@@ -124,7 +143,8 @@ exports.login = async (req, res) => {
             {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: user.role
             },
             process.env.JWT_SECRET,
             {
@@ -133,19 +153,28 @@ exports.login = async (req, res) => {
         );
 
         return res.json({
+
             success: true,
+
             message: "Login successful",
-            token: token,
+
+            token,
+
             user: {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: user.role
             }
+
         });
 
     } catch (error) {
 
-        console.error("❌ Login error:", error);
+        console.error(
+            "❌ Login error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
