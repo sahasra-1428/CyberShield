@@ -1,12 +1,15 @@
 const pool = require("./db");
 
-// =====================================================
-// CREATE COMPLAINT
-// =====================================================
 
+// CREATE COMPLAINT
 exports.createComplaint = async (req, res) => {
     try {
-        const { title, description, category } = req.body;
+
+        const {
+            title,
+            description,
+            category
+        } = req.body;
 
         if (!title || !description || !category) {
             return res.status(400).json({
@@ -34,20 +37,21 @@ exports.createComplaint = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Create complaint error:", error);
+
+        console.error(
+            "❌ Create complaint error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
-            message: "Failed to submit complaint"
+            message: error.message
         });
     }
 };
 
 
-// =====================================================
-// GET ALL COMPLAINTS OF LOGGED-IN USER
-// =====================================================
-
+// GET USER COMPLAINTS
 exports.getComplaints = async (req, res) => {
     try {
 
@@ -72,20 +76,21 @@ exports.getComplaints = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Get complaints error:", error);
+
+        console.error(
+            "❌ Get complaints error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
-            message: "Failed to fetch complaints"
+            message: error.message
         });
     }
 };
 
 
-// =====================================================
 // GET SINGLE COMPLAINT
-// =====================================================
-
 exports.getComplaintById = async (req, res) => {
     try {
 
@@ -122,20 +127,21 @@ exports.getComplaintById = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Get complaint error:", error);
+
+        console.error(
+            "❌ Get complaint error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
-            message: "Failed to fetch complaint"
+            message: error.message
         });
     }
 };
 
 
-// =====================================================
 // UPDATE COMPLAINT
-// =====================================================
-
 exports.updateComplaint = async (req, res) => {
     try {
 
@@ -150,7 +156,7 @@ exports.updateComplaint = async (req, res) => {
         if (!title || !description || !category) {
             return res.status(400).json({
                 success: false,
-                message: "Title, description and category are required"
+                message: "All fields are required"
             });
         }
 
@@ -184,20 +190,21 @@ exports.updateComplaint = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Update complaint error:", error);
+
+        console.error(
+            "❌ Update complaint error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
-            message: "Failed to update complaint"
+            message: error.message
         });
     }
 };
 
 
-// =====================================================
 // DELETE COMPLAINT
-// =====================================================
-
 exports.deleteComplaint = async (req, res) => {
     try {
 
@@ -226,11 +233,15 @@ exports.deleteComplaint = async (req, res) => {
         });
 
     } catch (error) {
-        console.error("❌ Delete complaint error:", error);
+
+        console.error(
+            "❌ Delete complaint error:",
+            error
+        );
 
         return res.status(500).json({
             success: false,
-            message: "Failed to delete complaint"
+            message: error.message
         });
     }
 };
