@@ -706,7 +706,18 @@ function setupForms() {
                     })
                 });
 
-                showMessage(data.message, "success");
+                const success = document.getElementById("reportSuccess");
+                const reportId = document.getElementById("reportId");
+
+                if (success) {
+                    success.classList.remove("hidden");
+                }
+
+                if (reportId && data.complaintId) {
+                    reportId.textContent = `CSP-${data.complaintId}`;
+                }
+
+                reportForm.style.display = "none";
                 reportForm.reset();
             } catch (error) {
                 showMessage(error.message, "error");
