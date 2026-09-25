@@ -677,6 +677,15 @@ function setupForms() {
 
     if (!reportForm) return;
 
+    const reportMessage = document.getElementById("reportMessage");
+
+    const updateReportMessage = (message, type = "success") => {
+        if (!reportMessage) return;
+
+        reportMessage.textContent = message;
+        reportMessage.className = `report-message ${type}`;
+    };
+
 
     reportForm.addEventListener(
         "submit",
@@ -690,6 +699,7 @@ function setupForms() {
             const suspiciousUrl = document.getElementById("suspiciousUrl")?.value.trim();
 
             if (!category || !description) {
+                updateReportMessage("Please complete the incident type and description.", "error");
                 showMessage("Please complete the incident type and description.", "error");
                 return;
             }
@@ -720,8 +730,10 @@ function setupForms() {
 
                 reportForm.style.display = "none";
                 reportForm.reset();
+                updateReportMessage("Report submitted successfully.");
                 showMessage("Report submitted successfully.", "success");
             } catch (error) {
+                updateReportMessage(error.message, "error");
                 showMessage(error.message, "error");
             }
 
