@@ -1,8 +1,9 @@
 const express = require("express");
 
-const router = express.Router();
+const pool = require("./db");
 
-const authMiddleware = require("../authMiddleware");
+// CREATE
+exports.createComplaint = async (req, res) => {
 
 const {
     createComplaint,
