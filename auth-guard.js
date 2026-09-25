@@ -1,8 +1,16 @@
-(function requireLogin() {
-    const token = localStorage.getItem("cybershieldToken");
-    const user = localStorage.getItem("cybershieldUser");
+(function () {
+
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    console.log("Token:", token);
+    console.log("User:", user);
 
     if (!token || !user) {
-        window.location.replace("login.html");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        window.location.href = "login.html";
     }
+
 })();
