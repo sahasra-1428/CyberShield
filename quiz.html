@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CSP | Cyber Safety Quiz</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="js/auth-guard.js"></script>
+
+    <style>
+
+        body {
+            background: #f4f8fc;
+        }
+
+        .quiz-container {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h1 {
+            color: #0b1f3a;
+            font-size: 38px;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question h3 {
+            color: #0b1f3a;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            display: block;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #d9e2ec;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #eef6ff;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 25px auto;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            background: #0b5ed7;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #084298;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #0b1f3a;
+            margin: 20px;
+        }
+
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            text-decoration: none;
+            background: #0b1f3a;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="quiz-container">
+
+
+    <div class="quiz-header">
+
+        <h1>
+            🛡️ Cyber Safety Quiz
+        </h1>
+
+        <p>
+            Test your knowledge about online safety.
+        </p>
+
+    </div>
+
+
+    <form id="quizForm">
+
+
+        <div class="quiz-card">
+
+
+            <div class="question">
+
+                <h3>
+                    1. Should you share your OTP with another person?
+                </h3>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q1"
+                           value="wrong">
+                    Yes
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q1"
+                           value="correct">
+                    No
+                </label>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    2. What should you do with a suspicious link?
+                </h3>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q2"
+                           value="wrong">
+                    Open it immediately
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q2"
+                           value="correct">
+                    Verify it before opening
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q2"
+                           value="wrong">
+                    Share it with friends
+                </label>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    3. Which password is safer?
+                </h3>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q3"
+                           value="wrong">
+                    123456
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q3"
+                           value="correct">
+                    A long unique password
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q3"
+                           value="wrong">
+                    Your name and birthday
+                </label>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    4. What is phishing?
+                </h3>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q4"
+                           value="correct">
+                    A scam that tries to steal information
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q4"
+                           value="wrong">
+                    A type of computer game
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q4"
+                           value="wrong">
+                    A safe payment method
+                </label>
+
+            </div>
+
+
+            <div class="question">
+
+                <h3>
+                    5. Should you click unknown email attachments?
+                </h3>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q5"
+                           value="wrong">
+                    Always
+                </label>
+
+                <label class="option">
+                    <input type="radio"
+                           name="q5"
+                           value="correct">
+                    No, verify them first
+                </label>
+
+            </div>
+
+
+        </div>
+
+
+        <button type="submit"
+                class="submit-btn">
+
+            Submit Quiz
+
+        </button>
+
+
+    </form>
+
+
+    <div id="result"></div>
+
+
+    <a href="user-dashboard.html"
+       class="back-btn">
+
+        ← Back to Dashboard
+
+    </a>
+
+
+</div>
+
+
+<script>
+
+document.getElementById("quizForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let score = 0;
+
+    const answers = [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+    ];
+
+    answers.forEach(function(question) {
+
+        const selected =
+            document.querySelector(
+                'input[name="' + question + '"]:checked'
+            );
+
+        if (selected &&
+            selected.value === "correct") {
+
+            score++;
+
+        }
+
+    });
+
+
+    document.getElementById("result")
+        .textContent =
+        "Your Score: " + score + " / 5";
+
+});
+
+</script>
+
+
+</body>
+
+</html>
