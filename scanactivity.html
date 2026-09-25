@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CSP | Security Scanner</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="js/auth-guard.js"></script>
+
+    <style>
+
+        body {
+            background: #f4f8fc;
+        }
+
+        .scan-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .scan-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .scan-header h1 {
+            color: #0b1f3a;
+            font-size: 38px;
+        }
+
+        .scan-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .scan-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .scan-icon {
+            font-size: 45px;
+        }
+
+        .scan-card h2 {
+            color: #0b1f3a;
+        }
+
+        .scan-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .scan-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 22px;
+            background: #0b5ed7;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .scan-button:hover {
+            background: #084298;
+        }
+
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 35px auto;
+            text-decoration: none;
+            background: #0b1f3a;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="scan-container">
+
+
+    <div class="scan-header">
+
+        <h1>
+            🔍 Security Scanner
+        </h1>
+
+        <p>
+            Choose what you want to check.
+        </p>
+
+    </div>
+
+
+    <div class="scan-grid">
+
+
+        <!-- URL -->
+
+        <div class="scan-card">
+
+            <div class="scan-icon">
+                🔗
+            </div>
+
+            <h2>
+                URL Scanner
+            </h2>
+
+            <p>
+                Check suspicious websites
+                and links.
+            </p>
+
+            <a href="url-checker.html"
+               class="scan-button">
+
+                Scan URL →
+
+            </a>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="scan-card">
+
+            <div class="scan-icon">
+                💬
+            </div>
+
+            <h2>
+                Message Scanner
+            </h2>
+
+            <p>
+                Check suspicious SMS and
+                online messages.
+            </p>
+
+            <a href="scam-detector.html"
+               class="scan-button">
+
+                Scan Message →
+
+            </a>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="scan-card">
+
+            <div class="scan-icon">
+                📧
+            </div>
+
+            <h2>
+                Email Checker
+            </h2>
+
+            <p>
+                Check suspicious email
+                addresses.
+            </p>
+
+            <a href="email-checker.html"
+               class="scan-button">
+
+                Check Email →
+
+            </a>
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="scan-card">
+
+            <div class="scan-icon">
+                📱
+            </div>
+
+            <h2>
+                Phone Checker
+            </h2>
+
+            <p>
+                Check suspicious phone
+                numbers.
+            </p>
+
+            <a href="phone-checker.html"
+               class="scan-button">
+
+                Check Number →
+
+            </a>
+
+        </div>
+
+
+        <!-- QR -->
+
+        <div class="scan-card">
+
+            <div class="scan-icon">
+                📷
+            </div>
+
+            <h2>
+                QR Scanner
+            </h2>
+
+            <p>
+                Scan and inspect QR
+                code links.
+            </p>
+
+            <a href="qr-checker.html"
+               class="scan-button">
+
+                Scan QR →
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <a href="user-dashboard.html"
+       class="back-btn">
+
+        ← Back to Dashboard
+
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>
