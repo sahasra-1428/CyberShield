@@ -1,372 +1,217 @@
-// ==========================================
-// CYBERSHIELD - REPORT A CYBER INCIDENT
-// ==========================================
+const API_URL =
+    "https://cybershield-production-3c1a.up.railway.app";
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    const reportForm =
-        document.getElementById("reportForm");
+// =====================================================
+// REPORT FORM
+// =====================================================
 
-    const reportMessage =
-        document.getElementById("reportMessage");
+const reportForm = document.getElementById("reportForm");
+const reportMessage = document.getElementById("reportMessage");
+const submitReportBtn = document.getElementById("submitReportBtn");
 
-    const submitButton =
-        document.getElementById("submitReportBtn");
 
+if (reportForm) {
 
-    // Check if form exists
-    if (!reportForm) {
+    reportForm.addEventListener("submit", async function (event) {
 
-        console.error(
-            "❌ reportForm was not found."
-        );
+        event.preventDefault();
 
-        return;
-    }
 
+        // =================================================
+        // GET LOGIN TOKEN
+        // =================================================
 
-    // Check if message box exists
-    if (!reportMessage) {
+        const token = localStorage.getItem("token");
 
-        console.error(
-            "❌ reportMessage was not found."
-        );
+        if (!token) {
 
-        return;
-    }
+            reportMessage.textContent =
+                "Please login before submitting a report.";
 
+            reportMessage.style.color = "red";
 
-    // ==========================================
-    // FORM SUBMIT
-    // ==========================================
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
 
-    reportForm.addEventListener(
-        "submit",
-        async function (e) {
+            return;
+        }
 
-            e.preventDefault();
 
+        // =================================================
+        // GET FORM VALUES
+        // =================================================
 
-            // ======================================
-            // SHOW LOADING MESSAGE
-            // ======================================
+        const incidentType =
+            document.getElementById("incidentType").value.trim();
 
-            reportMessage.innerHTML = `
-                <div class="report-loading">
-                    ⏳ Submitting your report...
-                </div>
-            `;
+        const name =
+            document.getElementById("name").value.trim();
 
+        const email =
+            document.getElementById("email").value.trim();
 
-            // ======================================
-            // GET LOGIN TOKEN
-            // ======================================
+        const suspiciousUrl =
+            document.getElementById("suspiciousUrl").value.trim();
 
-            const token =
-                localStorage.getItem("token");
+        const description =
+            document.getElementById("description").value.trim();
 
 
-            if (!token) {
+        // =================================================
+        // VALIDATION
+        // =================================================
 
-                reportMessage.innerHTML = `
-                    <div class="report-error">
-                        ❌ Your login session has expired.
-                        <br>
-                        Please login again.
-                    </div>
-                `;
+        if (!incidentType ||
+            !name ||
+            !email ||
+            !description) {
 
-                return;
-            }
+            reportMessage.textContent =
+                "Please fill all required fields.";
 
+            reportMessage.style.color = "red";
 
-            // ======================================
-            // GET FORM VALUES
-            // ======================================
+            return;
+        }
 
-            const incidentType =
-                document
-                    .getElementById("incidentType")
-                    .value
-                    .trim();
 
+        // =================================================
+        // DISABLE BUTTON
+        // =================================================
 
-            const name =
-                document
-                    .getElementById("name")
-                    .value
-                    .trim();
+        if (submitReportBtn) {
 
+            submitReportBtn.disabled = true;
 
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
+            submitReportBtn.textContent =
+                "Submitting...";
+        }
 
 
-            const suspiciousUrl =
-                document
-                    .getElementById("suspiciousUrl")
-                    .value
-                    .trim();
+        // =================================================
+        // SEND REPORT TO BACKEND
+        // =================================================
 
+        try {
 
-            const description =
-                document
-                    .getElementById("description")
-                    .value
-                    .trim();
+            const response = await fetch(
+                API_URL + "/api/complaints",
+                {
+                    method: "POST",
 
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token
+                    },
 
-            // ======================================
-            // VALIDATION
-            // ======================================
+                    body: JSON.stringify({
 
-            if (!incidentType) {
+                        title: incidentType,
 
-                reportMessage.innerHTML = `
-                    <div class="report-error">
-                        ⚠️ Please select an incident type.
-                    </div>
-                `;
+                        category: incidentType,
 
-                return;
-            }
+                        description:
+                            "Name: " +
+                            name +
 
+                            "\nEmail: " +
+                            email +
 
-            if (!name) {
+                            "\nSuspicious URL: " +
+                            suspiciousUrl +
 
-                reportMessage.innerHTML = `
-                    <div class="report-error">
-                        ⚠️ Please enter your name.
-                    </div>
-                `;
+                            "\n\nIncident Description:\n" +
+                            description
+                    })
+                }
+            );
 
-                return;
-            }
 
+            // =================================================
+            // READ RESPONSE
+            // =================================================
 
-            if (!email) {
+            const data = await response.json();
 
-                reportMessage.innerHTML = `
-                    <div class="report-error">
-                        ⚠️ Please enter your email.
-                    </div>
-                `;
 
-                return;
-            }
+            // =================================================
+            // BACKEND ERROR
+            // =================================================
 
+            if (!response.ok) {
 
-            if (!description) {
-
-                reportMessage.innerHTML = `
-                    <div class="report-error">
-                        ⚠️ Please describe the incident.
-                    </div>
-                `;
-
-                return;
-            }
-
-
-            // ======================================
-            // DISABLE BUTTON
-            // ======================================
-
-            submitButton.disabled = true;
-
-            submitButton.textContent =
-                "⏳ Submitting...";
-
-
-            // ======================================
-            // SEND TO BACKEND
-            // ======================================
-
-            try {
-
-                const response = await fetch(
-
-                    "https://cybershield-production-3c1a.up.railway.app/api/complaints",
-
-                    {
-
-                        method: "POST",
-
-                        headers: {
-
-                            "Content-Type":
-                                "application/json",
-
-                            "Authorization":
-                                "Bearer " + token
-
-                        },
-
-
-                        body: JSON.stringify({
-
-                            title: incidentType,
-
-                            category: incidentType,
-
-                            description:
-
-                                "Name: " +
-                                name +
-
-                                "\nEmail: " +
-                                email +
-
-                                "\nSuspicious URL: " +
-                                suspiciousUrl +
-
-                                "\n\nIncident Description:\n" +
-                                description
-
-                        })
-
-                    }
-
-                );
-
-
-                // ==================================
-                // READ SERVER RESPONSE
-                // ==================================
-
-                const data =
-                    await response.json();
-
-
-                console.log(
-                    "Server response:",
+                console.error(
+                    "Backend error:",
                     data
                 );
 
+                reportMessage.textContent =
+                    data.message ||
+                    "Unable to submit report.";
 
-                // ==================================
-                // SUCCESS
-                // ==================================
+                reportMessage.style.color = "red";
 
-                if (
-                    response.ok &&
-                    data.success
-                ) {
-
-                    const trackingId =
-                        data.complaintId ||
-                        data.id ||
-                        data.insertId ||
-                        "Generated";
-
-
-                    reportMessage.innerHTML = `
-
-                        <div class="report-success">
-
-                            <h3>
-                                ✅ Report Submitted Successfully!
-                            </h3>
-
-                            <p>
-                                Your cyber incident has been
-                                securely recorded.
-                            </p>
-
-                            <p>
-                                <strong>
-                                    Tracking ID:
-                                </strong>
-
-                                ${trackingId}
-                            </p>
-
-                            <p>
-                                Our authorized team can review
-                                the submitted information.
-                            </p>
-
-                        </div>
-
-                    `;
-
-
-                    // Clear form
-
-                    reportForm.reset();
-
-
-                }
-
-                // ==================================
-                // ERROR FROM SERVER
-                // ==================================
-
-                else {
-
-                    reportMessage.innerHTML = `
-
-                        <div class="report-error">
-
-                            ❌
-                            ${
-                                data.message ||
-                                "Unable to submit the report."
-                            }
-
-                        </div>
-
-                    `;
-
-                }
-
-
-            }
-
-            // ======================================
-            // CONNECTION ERROR
-            // ======================================
-
-            catch (error) {
-
-                console.error(
-                    "❌ Report error:",
-                    error
-                );
-
-
-                reportMessage.innerHTML = `
-
-                    <div class="report-error">
-
-                        ❌ Cannot connect to
-                        CyberShield server.
-
-                        <br><br>
-
-                        Please try again later.
-
-                    </div>
-
-                `;
-
+                return;
             }
 
 
-            // ======================================
+            // =================================================
+            // SUCCESS
+            // =================================================
+
+            if (data.success) {
+
+                reportMessage.textContent =
+                    "✅ Report submitted successfully! " +
+                    "Complaint ID: " +
+                    data.complaintId;
+
+                reportMessage.style.color = "green";
+
+
+                // Clear form
+
+                reportForm.reset();
+
+            } else {
+
+                reportMessage.textContent =
+                    data.message ||
+                    "Unable to submit report.";
+
+                reportMessage.style.color = "red";
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "❌ Report submission error:",
+                error
+            );
+
+            reportMessage.textContent =
+                "❌ Unable to connect to server.";
+
+            reportMessage.style.color = "red";
+
+        } finally {
+
+            // =================================================
             // ENABLE BUTTON AGAIN
-            // ======================================
+            // =================================================
 
-            submitButton.disabled = false;
+            if (submitReportBtn) {
 
-            submitButton.textContent =
-                "🚨 Submit Secure Report";
+                submitReportBtn.disabled = false;
 
+                submitReportBtn.textContent =
+                    "Submit Report";
+            }
         }
 
-    );
+    });
 
-});
+}
