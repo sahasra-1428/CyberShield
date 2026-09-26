@@ -5,7 +5,8 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
 
-require("./db");
+const pool = require("./db");
+pool.initializeDatabase(); // Add this line to create tables on startup
 
 const app = express();
 
