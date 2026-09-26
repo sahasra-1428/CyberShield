@@ -4244,3 +4244,162 @@ body:has(.dashboard-container) {
     font-weight: bold;
     display: block;
 }
+```css
+/* =========================================
+   SECURITY ALERTS PAGE
+========================================= */
+
+.alerts-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.alerts-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.alerts-header h1 {
+    color: #0b1f3a;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.alerts-header p {
+    color: #64748b;
+}
+
+
+/* ALERT CARD */
+
+.security-alert {
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    border-left: 6px solid #0b5ed7;
+}
+
+
+/* ICON */
+
+.alert-icon {
+    font-size: 35px;
+}
+
+
+/* CONTENT */
+
+.alert-content {
+    flex: 1;
+}
+
+.alert-content h2 {
+    color: #0b1f3a;
+    margin: 8px 0;
+}
+
+.alert-content p {
+    color: #475569;
+    line-height: 1.6;
+}
+
+.alert-content strong {
+    color: #0b1f3a;
+}
+
+.alert-content span {
+    color: #475569;
+}
+
+
+/* RISK LEVEL */
+
+.alert-level {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    color: #ffffff !important;
+
+    background: #dc2626;
+}
+
+
+/* MEDIUM */
+
+.security-alert.medium {
+    border-left-color: #f59e0b;
+}
+
+.security-alert.medium .alert-level {
+    background: #f59e0b;
+}
+
+
+/* LOW */
+
+.security-alert.low {
+    border-left-color: #0b5ed7;
+}
+
+.security-alert.low .alert-level {
+    background: #0b5ed7;
+}
+
+
+/* FOOTER */
+
+.alert-footer {
+    text-align: center;
+
+    margin-top: 35px;
+
+    padding: 25px;
+
+    background: #eef6ff;
+
+    border-radius: 15px;
+
+    color: #0b1f3a;
+}
+
+.alert-footer p {
+    color: #64748b;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .alerts-container {
+        margin: 25px auto;
+        padding: 15px;
+    }
+
+    .security-alert {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .alerts-header h1 {
+        font-size: 26px;
+    }
+}
+
+
