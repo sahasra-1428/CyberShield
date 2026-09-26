@@ -79,7 +79,7 @@ body {
 }
 
 .logo-text span {
-    color: #8c9aad;
+    color: #b8c2d1;
 }
 
 
@@ -92,7 +92,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #9ca8ba;
+    color: #b8c2d1;
     font-size: 17px;
     transition: 0.3s;
 }
@@ -609,7 +609,7 @@ footer {
 }
 
 footer > p {
-    color: #758297;
+    color: #b8c2d1;
 }
 
 .footer-links {
@@ -1256,7 +1256,7 @@ body {
 }
 
 .tips-list p {
-    color: #b0bac8;
+    color: #b8c2d1;
 }
 
 
